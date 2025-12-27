@@ -1,4 +1,5 @@
 """Pytest configuration and fixtures."""
+import os
 import pytest
 from tests.clients.auth_client import AuthClient
 from tests.clients.product_client import ProductClient
@@ -7,7 +8,7 @@ from tests.clients.payment_client import PaymentClient
 
 
 # Base URL configuration
-BASE_URL = "http://localhost:8000"
+BASE_URL = os.getenv("BASE_URL", "http://127.0.0.1:8000")
 
 
 @pytest.fixture(scope="session")
