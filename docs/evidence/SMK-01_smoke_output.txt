@@ -13,85 +13,201 @@ SMK-01: E2E Smoke Test - Complete Purchase Flow
 [STEP 1] Registering new customer...
 
 -------------------------------- live log call ---------------------------------
-2025-12-28 01:40:59 [    INFO] 
+2025-12-28 01:56:47 [    INFO] 
 ================================================================================
-2025-12-28 01:40:59 [    INFO] REQUEST: POST http://localhost:8000/auth/register
-2025-12-28 01:40:59 [    INFO] Body: {
-  "email": "test_0454f486@example.com",
+2025-12-28 01:56:47 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-28 01:56:47 [    INFO] Body: {
+  "email": "test_0474ec9a@example.com",
   "password": "password123",
   "role": "customer"
 }
-FAILED
-
-=================================== FAILURES ===================================
-______________________ test_smk_01_end_to_end_happy_flow _______________________
-venv/lib/python3.14/site-packages/urllib3/connection.py:204: in _new_conn
-    sock = connection.create_connection(
-venv/lib/python3.14/site-packages/urllib3/util/connection.py:85: in create_connection
-    raise err
-venv/lib/python3.14/site-packages/urllib3/util/connection.py:73: in create_connection
-    sock.connect(sa)
-E   ConnectionRefusedError: [Errno 61] Connection refused
-
-The above exception was the direct cause of the following exception:
-venv/lib/python3.14/site-packages/urllib3/connectionpool.py:787: in urlopen
-    response = self._make_request(
-venv/lib/python3.14/site-packages/urllib3/connectionpool.py:493: in _make_request
-    conn.request(
-venv/lib/python3.14/site-packages/urllib3/connection.py:500: in request
-    self.endheaders()
-/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/http/client.py:1333: in endheaders
-    self._send_output(message_body, encode_chunked=encode_chunked)
-/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/http/client.py:1093: in _send_output
-    self.send(msg)
-/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/http/client.py:1037: in send
-    self.connect()
-venv/lib/python3.14/site-packages/urllib3/connection.py:331: in connect
-    self.sock = self._new_conn()
-                ^^^^^^^^^^^^^^^^
-venv/lib/python3.14/site-packages/urllib3/connection.py:219: in _new_conn
-    raise NewConnectionError(
-E   urllib3.exceptions.NewConnectionError: HTTPConnection(host='localhost', port=8000): Failed to establish a new connection: [Errno 61] Connection refused
-
-The above exception was the direct cause of the following exception:
-venv/lib/python3.14/site-packages/requests/adapters.py:644: in send
-    resp = conn.urlopen(
-venv/lib/python3.14/site-packages/urllib3/connectionpool.py:841: in urlopen
-    retries = retries.increment(
-venv/lib/python3.14/site-packages/urllib3/util/retry.py:519: in increment
-    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-E   urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /auth/register (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8000): Failed to establish a new connection: [Errno 61] Connection refused"))
-
-During handling of the above exception, another exception occurred:
-tests/test_smoke.py:30: in test_smk_01_end_to_end_happy_flow
-    register_response = auth_client.register(
-tests/clients/auth_client.py:17: in register
-    return self.post("/auth/register", json_data=data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-tests/clients/api_client.py:77: in post
-    return self.request("POST", endpoint, headers=headers, json_data=json_data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-tests/clients/api_client.py:57: in request
-    response = self.session.request(
-venv/lib/python3.14/site-packages/requests/sessions.py:589: in request
-    resp = self.send(prep, **send_kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-venv/lib/python3.14/site-packages/requests/sessions.py:703: in send
-    r = adapter.send(request, **kwargs)
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-venv/lib/python3.14/site-packages/requests/adapters.py:677: in send
-    raise ConnectionError(e, request=request)
-E   requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /auth/register (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8000): Failed to establish a new connection: [Errno 61] Connection refused"))
------------------------------- Captured log call -------------------------------
-INFO     AuthClient:api_client.py:27 
-================================================================================
-INFO     AuthClient:api_client.py:28 REQUEST: POST http://localhost:8000/auth/register
-INFO     AuthClient:api_client.py:35 Body: {
-  "email": "test_0454f486@example.com",
-  "password": "password123",
+2025-12-28 01:56:47 [    INFO] 
+RESPONSE: 201
+2025-12-28 01:56:47 [    INFO] Headers: {'date': 'Sat, 27 Dec 2025 22:56:46 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json'}
+2025-12-28 01:56:47 [    INFO] Body: {
+  "id": "592b0a57-d227-45af-afa2-92676969cf51",
+  "email": "test_0474ec9a@example.com",
   "role": "customer"
 }
-=========================== short test summary info ============================
-FAILED tests/test_smoke.py::test_smk_01_end_to_end_happy_flow - requests.exce...
-============================== 1 failed in 0.09s ===============================
+2025-12-28 01:56:47 [    INFO] ================================================================================
+
+✓ User registered: test_0474ec9a@example.com
+
+[STEP 2] Logging in...
+2025-12-28 01:56:47 [    INFO] 
+================================================================================
+2025-12-28 01:56:47 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-28 01:56:47 [    INFO] Body: {
+  "email": "test_0474ec9a@example.com",
+  "password": "password123"
+}
+2025-12-28 01:56:48 [    INFO] 
+RESPONSE: 200
+2025-12-28 01:56:48 [    INFO] Headers: {'date': 'Sat, 27 Dec 2025 22:56:46 GMT', 'server': 'uvicorn', 'content-length': '245', 'content-type': 'application/json'}
+2025-12-28 01:56:48 [    INFO] Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1OTJiMGE1Ny1kMjI3LTQ1YWYtYWZhMi05MjY3Njk2OWNmNTEiLCJyb2xlIjoiY3VzdG9tZXIiLCJleHAiOjE3NjY4Nzk4MDh9.JjJb7FAZpIS6VRmj03KpZ1IkPXTqLVbDexLubi5KzoM",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-28 01:56:48 [    INFO] ================================================================================
+
+✓ Login successful, token received
+
+[STEP 3] Listing products...
+2025-12-28 01:56:48 [    INFO] 
+================================================================================
+2025-12-28 01:56:48 [    INFO] REQUEST: GET http://127.0.0.1:8000/products
+2025-12-28 01:56:48 [    INFO] 
+RESPONSE: 200
+2025-12-28 01:56:48 [    INFO] Headers: {'date': 'Sat, 27 Dec 2025 22:56:46 GMT', 'server': 'uvicorn', 'content-length': '486', 'content-type': 'application/json'}
+2025-12-28 01:56:48 [    INFO] Body: [
+  {
+    "id": "7c2f2969-b234-4444-8bb8-397325bc7b21",
+    "name": "Laptop",
+    "price": 15000.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "28ccfa4c-4f48-4eae-ad34-ff29517828a2",
+    "name": "Mouse",
+    "price": 150.0,
+    "currency": "TRY",
+    "stock": 47,
+    "isActive": true
+  },
+  {
+    "id": "69543076-7559-409e-af90-20c517610098",
+    "name": "Keyboard",
+    "price": 500.0,
+    "currency": "TRY",
+    "stock": 30,
+    "isActive": true
+  },
+  {
+    "id": "faf868c8-49b8-4016-919f-3ff6a4d8d59b",
+    "name": "Monitor",
+    "price": 3000.0,
+    "currency": "TRY",
+    "stock": 20,
+    "isActive": true
+  }
+]
+2025-12-28 01:56:48 [    INFO] ================================================================================
+
+✓ Found 4 products
+  Selected product: Mouse - 150.0 TRY
+
+[STEP 4] Creating order...
+2025-12-28 01:56:48 [    INFO] 
+================================================================================
+2025-12-28 01:56:48 [    INFO] REQUEST: POST http://127.0.0.1:8000/orders
+2025-12-28 01:56:48 [    INFO] Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-28 01:56:48 [    INFO] Body: {
+  "items": [
+    {
+      "productId": "28ccfa4c-4f48-4eae-ad34-ff29517828a2",
+      "qty": 1
+    }
+  ]
+}
+2025-12-28 01:56:48 [    INFO] 
+RESPONSE: 201
+2025-12-28 01:56:48 [    INFO] Headers: {'date': 'Sat, 27 Dec 2025 22:56:46 GMT', 'server': 'uvicorn', 'content-length': '261', 'content-type': 'application/json'}
+2025-12-28 01:56:48 [    INFO] Body: {
+  "id": "cf2926c9-b998-4d46-b8a6-bcacde4dc00f",
+  "userId": "592b0a57-d227-45af-afa2-92676969cf51",
+  "items": [
+    {
+      "productId": "28ccfa4c-4f48-4eae-ad34-ff29517828a2",
+      "qty": 1
+    }
+  ],
+  "totalAmount": 150.0,
+  "currency": "TRY",
+  "status": "CREATED",
+  "createdAt": "2025-12-27T22:56:48.009578"
+}
+2025-12-28 01:56:48 [    INFO] ================================================================================
+
+✓ Order created: cf2926c9-b998-4d46-b8a6-bcacde4dc00f
+  Total: 150.0 TRY
+  Status: CREATED
+
+[STEP 5] Creating payment...
+2025-12-28 01:56:48 [    INFO] 
+================================================================================
+2025-12-28 01:56:48 [    INFO] REQUEST: POST http://127.0.0.1:8000/payments
+2025-12-28 01:56:48 [    INFO] Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-28 01:56:48 [    INFO] Body: {
+  "orderId": "cf2926c9-b998-4d46-b8a6-bcacde4dc00f",
+  "method": "CARD"
+}
+2025-12-28 01:56:48 [    INFO] 
+RESPONSE: 201
+2025-12-28 01:56:48 [    INFO] Headers: {'date': 'Sat, 27 Dec 2025 22:56:46 GMT', 'server': 'uvicorn', 'content-length': '261', 'content-type': 'application/json'}
+2025-12-28 01:56:48 [    INFO] Body: {
+  "id": "cf604b07-7082-47a5-a014-c43f20af2e61",
+  "orderId": "cf2926c9-b998-4d46-b8a6-bcacde4dc00f",
+  "amount": 150.0,
+  "currency": "TRY",
+  "method": "CARD",
+  "status": "CAPTURED",
+  "providerRef": "PROV-7aa241aa-999d-4075-adcd-bac6236ed378",
+  "createdAt": "2025-12-27T22:56:48.010949"
+}
+2025-12-28 01:56:48 [    INFO] ================================================================================
+
+✓ Payment created: cf604b07-7082-47a5-a014-c43f20af2e61
+  Amount: 150.0 TRY
+  Method: CARD
+  Status: CAPTURED
+
+[STEP 6] Verifying order status...
+2025-12-28 01:56:48 [    INFO] 
+================================================================================
+2025-12-28 01:56:48 [    INFO] REQUEST: GET http://127.0.0.1:8000/orders/cf2926c9-b998-4d46-b8a6-bcacde4dc00f
+2025-12-28 01:56:48 [    INFO] Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-28 01:56:48 [    INFO] 
+RESPONSE: 200
+2025-12-28 01:56:48 [    INFO] Headers: {'date': 'Sat, 27 Dec 2025 22:56:46 GMT', 'server': 'uvicorn', 'content-length': '258', 'content-type': 'application/json'}
+2025-12-28 01:56:48 [    INFO] Body: {
+  "id": "cf2926c9-b998-4d46-b8a6-bcacde4dc00f",
+  "userId": "592b0a57-d227-45af-afa2-92676969cf51",
+  "items": [
+    {
+      "productId": "28ccfa4c-4f48-4eae-ad34-ff29517828a2",
+      "qty": 1
+    }
+  ],
+  "totalAmount": 150.0,
+  "currency": "TRY",
+  "status": "PAID",
+  "createdAt": "2025-12-27T22:56:48.009578"
+}
+2025-12-28 01:56:48 [    INFO] ================================================================================
+
+✓ Order status verified: PAID
+
+================================================================================
+SMK-01: PASSED ✓
+================================================================================
+User: test_0474ec9a@example.com
+Order: cf2926c9-b998-4d46-b8a6-bcacde4dc00f - 150.0 TRY
+Payment: cf604b07-7082-47a5-a014-c43f20af2e61 - CAPTURED
+Final Order Status: PAID
+================================================================================
+
+PASSED
+
+============================== 1 passed in 0.45s ===============================
