@@ -116,30 +116,6 @@ async def create_product(request: ProductCreateRequest, user: UserInternal = Dep
     return product
 
 
-@app.patch("/products/{id}", response_model=Product, tags=["Products"])
-async def update_product(id: str, request: ProductUpdateRequest, user: UserInternal = Depends(require_admin)):
-    """Update a product. Admin only."""
-    product = storage.get_product(id)
-    if not product:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Product {id} not found"
-        )
-    
-    # Update fields
-    if request.name is not None:
-        product.name = request.name
-    if request.price is not None:
-        product.price = request.price
-    if request.stock is not None:
-        product.stock = request.stock
-    if request.isActive is not None:
-        product.isActive = request.isActive
-    
-    storage.update_product(id, product)
-    return product
-
-
 # ========== Order Endpoints ==========
 @app.post("/orders", response_model=Order, status_code=status.HTTP_201_CREATED, tags=["Orders"])
 async def create_order(request: OrderCreateRequest, user: UserInternal = Depends(require_customer)):
