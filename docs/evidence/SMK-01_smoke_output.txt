@@ -13,11 +13,11 @@ SMK-01: E2E Smoke Test - Complete Purchase Flow
 [STEP 1] Registering new customer...
 
 -------------------------------- live log call ---------------------------------
-2025-12-28 01:36:22 [    INFO] 
+2025-12-28 01:40:59 [    INFO] 
 ================================================================================
-2025-12-28 01:36:22 [    INFO] REQUEST: POST http://localhost:8000/auth/register
-2025-12-28 01:36:22 [    INFO] Body: {
-  "email": "test_f29e66fc@example.com",
+2025-12-28 01:40:59 [    INFO] REQUEST: POST http://localhost:8000/auth/register
+2025-12-28 01:40:59 [    INFO] Body: {
+  "email": "test_0454f486@example.com",
   "password": "password123",
   "role": "customer"
 }
@@ -88,10 +88,10 @@ INFO     AuthClient:api_client.py:27
 ================================================================================
 INFO     AuthClient:api_client.py:28 REQUEST: POST http://localhost:8000/auth/register
 INFO     AuthClient:api_client.py:35 Body: {
-  "email": "test_f29e66fc@example.com",
+  "email": "test_0454f486@example.com",
   "password": "password123",
   "role": "customer"
 }
 =========================== short test summary info ============================
 FAILED tests/test_smoke.py::test_smk_01_end_to_end_happy_flow - requests.exce...
-============================== 1 failed in 0.10s ===============================
+============================== 1 failed in 0.09s ===============================
