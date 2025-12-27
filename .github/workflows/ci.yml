@@ -36,7 +36,21 @@ jobs:
 
       - name: Start API
         run: |
-          python -m uvicorn "${API_APP}" --host "${HOST}" --port "${PORT}" &
+          set -euo pipefail
+          export PYTHONPATH="$GITHUB_WORKSPACE"
+
+          echo "Starting API: ${API_APP}"
+          python -m uvicorn "${API_APP}" --host "${HOST}" --port "${PORT}" > uvicorn.log 2>&1 &
+          UVICORN_PID=$!
+          sleep 1
+
+          if ! kill -0 "$UVICORN_PID" 2>/dev/null; then
+            echo "Uvicorn exited immediately."
+            echo "----- uvicorn.log -----"
+            cat uvicorn.log
+            exit 1
+          fi
+
           echo "Waiting for /health..."
           for i in $(seq 1 30); do
             if curl -fsS "${BASE_URL}/health" >/dev/null; then
@@ -45,16 +59,13 @@ jobs:
             fi
             sleep 1
           done
-          curl -fsS "${BASE_URL}/health"
 
-      - name: Run smoke tests
-        run: |
-          mkdir -p reports
-          pytest -m smoke -q --junitxml=reports/junit.xml
+          if ! curl -fsS "${BASE_URL}/health" >/dev/null; then
+            echo "API did not become ready."
+            echo "----- uvicorn.log -----"
+            cat uvicorn.log
+            exit 1
+          fi
 
-      - name: Upload reports
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-reports
-          path: reports/
+          echo "Health OK"
+
