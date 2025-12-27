@@ -1,0 +1,97 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.0, pytest-9.0.2, pluggy-1.6.0
+rootdir: /Users/recepozturk/Desktop/SQA Project
+configfile: pytest.ini
+plugins: anyio-4.12.0, html-4.1.1, metadata-3.1.1
+collected 1 item
+
+tests/test_smoke.py::test_smk_01_end_to_end_happy_flow 
+================================================================================
+SMK-01: E2E Smoke Test - Complete Purchase Flow
+================================================================================
+
+[STEP 1] Registering new customer...
+
+-------------------------------- live log call ---------------------------------
+2025-12-28 01:36:22 [    INFO] 
+================================================================================
+2025-12-28 01:36:22 [    INFO] REQUEST: POST http://localhost:8000/auth/register
+2025-12-28 01:36:22 [    INFO] Body: {
+  "email": "test_f29e66fc@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+FAILED
+
+=================================== FAILURES ===================================
+______________________ test_smk_01_end_to_end_happy_flow _______________________
+venv/lib/python3.14/site-packages/urllib3/connection.py:204: in _new_conn
+    sock = connection.create_connection(
+venv/lib/python3.14/site-packages/urllib3/util/connection.py:85: in create_connection
+    raise err
+venv/lib/python3.14/site-packages/urllib3/util/connection.py:73: in create_connection
+    sock.connect(sa)
+E   ConnectionRefusedError: [Errno 61] Connection refused
+
+The above exception was the direct cause of the following exception:
+venv/lib/python3.14/site-packages/urllib3/connectionpool.py:787: in urlopen
+    response = self._make_request(
+venv/lib/python3.14/site-packages/urllib3/connectionpool.py:493: in _make_request
+    conn.request(
+venv/lib/python3.14/site-packages/urllib3/connection.py:500: in request
+    self.endheaders()
+/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/http/client.py:1333: in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/http/client.py:1093: in _send_output
+    self.send(msg)
+/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/http/client.py:1037: in send
+    self.connect()
+venv/lib/python3.14/site-packages/urllib3/connection.py:331: in connect
+    self.sock = self._new_conn()
+                ^^^^^^^^^^^^^^^^
+venv/lib/python3.14/site-packages/urllib3/connection.py:219: in _new_conn
+    raise NewConnectionError(
+E   urllib3.exceptions.NewConnectionError: HTTPConnection(host='localhost', port=8000): Failed to establish a new connection: [Errno 61] Connection refused
+
+The above exception was the direct cause of the following exception:
+venv/lib/python3.14/site-packages/requests/adapters.py:644: in send
+    resp = conn.urlopen(
+venv/lib/python3.14/site-packages/urllib3/connectionpool.py:841: in urlopen
+    retries = retries.increment(
+venv/lib/python3.14/site-packages/urllib3/util/retry.py:519: in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /auth/register (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8000): Failed to establish a new connection: [Errno 61] Connection refused"))
+
+During handling of the above exception, another exception occurred:
+tests/test_smoke.py:30: in test_smk_01_end_to_end_happy_flow
+    register_response = auth_client.register(
+tests/clients/auth_client.py:17: in register
+    return self.post("/auth/register", json_data=data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/clients/api_client.py:77: in post
+    return self.request("POST", endpoint, headers=headers, json_data=json_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/clients/api_client.py:57: in request
+    response = self.session.request(
+venv/lib/python3.14/site-packages/requests/sessions.py:589: in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+venv/lib/python3.14/site-packages/requests/sessions.py:703: in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+venv/lib/python3.14/site-packages/requests/adapters.py:677: in send
+    raise ConnectionError(e, request=request)
+E   requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /auth/register (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8000): Failed to establish a new connection: [Errno 61] Connection refused"))
+------------------------------ Captured log call -------------------------------
+INFO     AuthClient:api_client.py:27 
+================================================================================
+INFO     AuthClient:api_client.py:28 REQUEST: POST http://localhost:8000/auth/register
+INFO     AuthClient:api_client.py:35 Body: {
+  "email": "test_f29e66fc@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+=========================== short test summary info ============================
+FAILED tests/test_smoke.py::test_smk_01_end_to_end_happy_flow - requests.exce...
+============================== 1 failed in 0.10s ===============================
