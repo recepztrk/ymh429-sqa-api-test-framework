@@ -1,0 +1,457 @@
+openapi: 3.0.3
+info:
+  title: Simplified E-Commerce Order & Payment API
+  version: 1.0.0
+  description: |
+    Simplified REST API for a basic e-commerce domain (auth, products, orders, payments).
+    Primary purpose: serve as a stable target for an API test automation framework.
+servers:
+  - url: http://localhost:8000
+
+tags:
+  - name: Health
+  - name: Auth
+  - name: Products
+  - name: Orders
+  - name: Payments
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              example: VALIDATION_ERROR
+            message:
+              type: string
+              example: Invalid request
+            details:
+              type: array
+              items:
+                type: object
+          required: [code, message]
+        requestId:
+          type: string
+          example: 3f2b1a8e-1d8f-4c8b-b3b9-6f4c8a2f6f5b
+      required: [error]
+
+    UserRegisterRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 8
+        role:
+          type: string
+          enum: [customer, admin]
+          default: customer
+      required: [email, password]
+
+    UserPublic:
+      type: object
+      properties:
+        id: { type: string }
+        email: { type: string, format: email }
+        role: { type: string, enum: [customer, admin] }
+      required: [id, email, role]
+
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+      required: [email, password]
+
+    LoginResponse:
+      type: object
+      properties:
+        accessToken: { type: string }
+        tokenType: { type: string, example: Bearer }
+        expiresIn: { type: integer, example: 3600 }
+      required: [accessToken, tokenType]
+
+    Product:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        price: { type: number, minimum: 0 }
+        currency: { type: string, example: TRY }
+        stock: { type: integer, minimum: 0 }
+        isActive: { type: boolean }
+      required: [id, name, price, currency, stock, isActive]
+
+    ProductCreateRequest:
+      type: object
+      properties:
+        name: { type: string }
+        price: { type: number, minimum: 0 }
+        currency: { type: string, example: TRY }
+        stock: { type: integer, minimum: 0 }
+        isActive: { type: boolean, default: true }
+      required: [name, price, currency, stock]
+
+    ProductUpdateRequest:
+      type: object
+      properties:
+        name: { type: string }
+        price: { type: number, minimum: 0 }
+        stock: { type: integer, minimum: 0 }
+        isActive: { type: boolean }
+
+    OrderItem:
+      type: object
+      properties:
+        productId: { type: string }
+        qty: { type: integer, minimum: 1, maximum: 10 }
+      required: [productId, qty]
+
+    Order:
+      type: object
+      properties:
+        id: { type: string }
+        userId: { type: string }
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/OrderItem' }
+        totalAmount: { type: number, minimum: 0 }
+        currency: { type: string, example: TRY }
+        status: { type: string, enum: [CREATED, PAID, CANCELLED] }
+        createdAt: { type: string, format: date-time }
+      required: [id, userId, items, totalAmount, currency, status, createdAt]
+
+    OrderCreateRequest:
+      type: object
+      properties:
+        items:
+          type: array
+          minItems: 1
+          items: { $ref: '#/components/schemas/OrderItem' }
+      required: [items]
+
+    Payment:
+      type: object
+      properties:
+        id: { type: string }
+        orderId: { type: string }
+        amount: { type: number, minimum: 0 }
+        currency: { type: string, example: TRY }
+        method: { type: string, enum: [CARD, TRANSFER] }
+        status: { type: string, enum: [INITIATED, CAPTURED, FAILED, REFUNDED] }
+        providerRef: { type: string }
+        createdAt: { type: string, format: date-time }
+      required: [id, orderId, amount, currency, method, status, createdAt]
+
+    PaymentCreateRequest:
+      type: object
+      properties:
+        orderId: { type: string }
+        method: { type: string, enum: [CARD, TRANSFER] }
+      required: [orderId, method]
+
+security:
+  - bearerAuth: []
+
+paths:
+  /health:
+    get:
+      tags: [Health]
+      security: []
+      summary: Health check
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: string, example: ok }
+
+  /auth/register:
+    post:
+      tags: [Auth]
+      security: []
+      summary: Register user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/UserRegisterRequest' }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UserPublic' }
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+
+  /auth/login:
+    post:
+      tags: [Auth]
+      security: []
+      summary: Login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/LoginRequest' }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/LoginResponse' }
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+
+  /products:
+    get:
+      tags: [Products]
+      security: []
+      summary: List active products
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Product' }
+
+    post:
+      tags: [Products]
+      summary: Create product (admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ProductCreateRequest' }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Product' }
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+
+  /products/{id}:
+    get:
+      tags: [Products]
+      security: []
+      summary: Get product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Product' }
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+
+    patch:
+      tags: [Products]
+      summary: Update product (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ProductUpdateRequest' }
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Product' }
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+
+  /orders:
+    post:
+      tags: [Orders]
+      summary: Create order (customer)
+      description: |
+        Business rules:
+        - qty per item: 1..10
+        - cart total: min 50 TRY, max 5000 TRY
+        - stock must be sufficient for each item
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/OrderCreateRequest' }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Order' }
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+        '409':
+          description: Stock conflict
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+        '422':
+          description: Business rule violation
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+
+  /orders/{id}:
+    get:
+      tags: [Orders]
+      summary: Get order
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Order' }
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+
+  /orders/{id}/cancel:
+    post:
+      tags: [Orders]
+      summary: Cancel order (customer)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Cancelled
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Order' }
+        '409':
+          description: Invalid state transition
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+
+  /payments:
+    post:
+      tags: [Payments]
+      summary: Create payment for an order
+      description: |
+        Suggested idempotency: client may send Idempotency-Key header.
+        Payment should be CAPTURED only if order status is CREATED and payment amount matches order total.
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: false
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/PaymentCreateRequest' }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Payment' }
+        '409':
+          description: Conflict (duplicate payment or invalid state)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+
+  /payments/{id}:
+    get:
+      tags: [Payments]
+      summary: Get payment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Payment' }
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
