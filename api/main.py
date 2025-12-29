@@ -2,8 +2,9 @@
 import uuid
 from datetime import datetime
 from typing import List
-from fastapi import FastAPI, Depends, HTTPException, status, Header
+from fastapi import FastAPI, Depends, HTTPException, status, Header, Request
 from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
 
 from api.models import (
     UserRegisterRequest, UserPublic, LoginRequest, LoginResponse,
@@ -28,6 +29,79 @@ app = FastAPI(
     version="1.0.0",
     description="Simplified REST API for a basic e-commerce domain (auth, products, orders, payments)."
 )
+
+@app.middleware("http")
+async def add_request_id(request: Request, call_next):
+    request_id = str(uuid.uuid4())
+    request.state.request_id = request_id
+    response = await call_next(request)
+    response.headers["X-Request-Id"] = request_id
+    return response
+
+STATUS_CODE_TO_CODE = {
+    400: "BAD_REQUEST",
+    401: "UNAUTHORIZED",
+    403: "FORBIDDEN",
+    404: "NOT_FOUND",
+    409: "CONFLICT",
+    422: "VALIDATION_ERROR",
+    500: "INTERNAL_ERROR",
+}
+
+
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request: Request, exc: HTTPException):
+    request_id = getattr(request.state, "request_id", str(uuid.uuid4()))
+
+    # detail dict ise (code/message/details) formatını destekle
+    if isinstance(exc.detail, dict):
+        code = exc.detail.get("code") or STATUS_CODE_TO_CODE.get(exc.status_code, "HTTP_ERROR")
+        message = exc.detail.get("message") or "Request failed"
+        details = exc.detail.get("details")
+    else:
+        code = STATUS_CODE_TO_CODE.get(exc.status_code, "HTTP_ERROR")
+        message = str(exc.detail)
+        details = None
+
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={
+            "error": {"code": code, "message": message, "details": details},
+            "requestId": request_id,
+        },
+    )
+
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    request_id = getattr(request.state, "request_id", str(uuid.uuid4()))
+    details = []
+    for err in exc.errors():
+        details.append({
+            "loc": err.get("loc"),
+            "msg": err.get("msg"),
+            "type": err.get("type"),
+        })
+
+    return JSONResponse(
+        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+        content={
+            "error": {"code": "VALIDATION_ERROR", "message": "Invalid request", "details": details},
+            "requestId": request_id,
+        },
+    )
+
+
+@app.exception_handler(Exception)
+async def unhandled_exception_handler(request: Request, exc: Exception):
+    request_id = getattr(request.state, "request_id", str(uuid.uuid4()))
+    return JSONResponse(
+        status_code=500,
+        content={
+            "error": {"code": "INTERNAL_ERROR", "message": "Internal server error", "details": None},
+            "requestId": request_id,
+        },
+    )
 
 
 # ========== Health ==========
