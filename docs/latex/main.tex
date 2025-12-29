@@ -4,13 +4,11 @@
 
 \documentclass[12pt,a4paper]{article}
 
-% ===== PACKAGES =====
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[turkish]{babel}
-\usepackage{times}                    % Times New Roman
-\usepackage[margin=2.5cm]{geometry}   % 2.5cm margins
-\usepackage{setspace}                 % Line spacing
+\usepackage{times}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{hyperref}
@@ -18,51 +16,31 @@
 \usepackage{xcolor}
 \usepackage{booktabs}
 \usepackage{array}
-\usepackage{longtable}
-\usepackage{caption}
-\usepackage{subcaption}
-\usepackage{tikz}
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
 
-% ===== CODE LISTING SETTINGS =====
-\definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
 \lstdefinestyle{mystyle}{
-    backgroundcolor=\color{backcolour},   
-    commentstyle=\color{codegreen},
-    keywordstyle=\color{magenta},
-    numberstyle=\tiny\color{codegray},
-    stringstyle=\color{codepurple},
+    backgroundcolor=\color{backcolour},
     basicstyle=\ttfamily\footnotesize,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=true,                 
-    numbers=left,                    
-    numbersep=5pt,                  
-    showspaces=false,                
-    showstringspaces=false,
-    showtabs=false,                  
-    tabsize=2,
+    breaklines=true,
+    captionpos=b,
+    numbers=left,
+    numbersep=5pt,
+    numberstyle=\tiny\color{codegray},
     frame=single
 }
 \lstset{style=mystyle}
 
-% ===== LINE SPACING =====
-\onehalfspacing  % 1.5 line spacing
+\onehalfspacing
 
-% ===== DOCUMENT INFO =====
 \title{
     \vspace{-2cm}
     \textbf{ANKARA ÜNİVERSİTESİ} \\
     \textbf{MÜHENDİSLİK FAKÜLTESİ} \\
     \textbf{YAZILIM MÜHENDİSLİĞİ BÖLÜMÜ} \\
     \vspace{1cm}
-    \large YMH429 – YAZILIM KALİTE GÜVENCESİ VE TESTİ \\
+    \large YMH429 -- YAZILIM KALİTE GÜVENCESİ VE TESTİ \\
     2024-2025 GÜZ DÖNEMİ \\
     \vspace{1cm}
     \textbf{DÖNEM PROJESİ} \\
@@ -75,7 +53,6 @@
 
 \begin{document}
 
-% ===== KAPAK SAYFASI =====
 \maketitle
 \thispagestyle{empty}
 
@@ -99,77 +76,91 @@
 \tableofcontents
 \newpage
 
-% ===== BÖLÜM 1: GİRİŞ VE İLGİLİ ÇALIŞMALAR (15 puan) =====
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BÖLÜM 1: GİRİŞ VE İLGİLİ ÇALIŞMALAR (15 puan)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Giriş ve İlgili Çalışmalar}
 
 \subsection{Projenin Amacı ve Önemi}
 
-Modern e-ticaret uygulamalarında ürün yönetimi, sipariş işleme ve ödeme akışları büyük ölçüde RESTful API'ler üzerinden gerçekleştirilmektedir. Bu servislerin hatalı çalışması, doğrudan kullanıcı deneyimini ve iş sürekliliğini olumsuz etkilemektedir. Bu nedenle, API'lerin sistematik olarak test edilmesi yazılım kalite güvencesi açısından kritik önem taşımaktadır.
+Günümüz yazılım sistemlerinde uygulama programlama arayüzleri (API) kritik bir rol üstlenmektedir. Özellikle e-ticaret, finans ve sağlık gibi sektörlerde, uygulamalar arası veri alışverişi büyük ölçüde RESTful API'ler üzerinden gerçekleştirilmektedir. Bu API'lerin güvenilir ve hatasız çalışması, hem kullanıcı deneyimi hem de iş sürekliliği açısından hayati önem taşımaktadır.
 
-Bu projenin amacı, basitleştirilmiş bir e-ticaret sipariş ve ödeme sistemi için tasarlanan REST tabanlı web servisleri üzerinde \textbf{yeniden kullanılabilir, modüler ve CI/CD uyumlu bir API test otomasyon çatısı} geliştirmek ve bu çatının etkinliğini somut kanıtlarla göstermektir.
-
-Proje kapsamında:
+API'lerde yaşanan hatalar ciddi sonuçlara yol açabilmektedir:
 \begin{itemize}
-    \item Ürün, sipariş, ödeme ve kullanıcı varlıklarını içeren örnek bir E-Ticaret REST API'si geliştirilmiştir.
-    \item Stok ve sepet tutarı kuralları ile kimlik doğrulama süreçlerini kapsayan fonksiyonel, negatif ve sınır değeri testleri otomatikleştirilmiştir.
-    \item Test paketi GitHub Actions ile sürekli entegrasyon ortamına entegre edilmiştir.
+    \item \textbf{Finansal kayıplar:} Hatalı işlemler, yanlış fiyatlandırma veya ödeme hataları doğrudan gelir kaybına neden olabilir.
+    \item \textbf{İtibar zararı:} Sürekli hata veren sistemler müşteri güvenini sarsar.
+    \item \textbf{Güvenlik açıkları:} Yetersiz test edilen API'ler veri ihlallerine zemin hazırlayabilir.
+    \item \textbf{Operasyonel aksamalar:} Kritik işlemlerin başarısız olması iş süreçlerini durdurabilir.
 \end{itemize}
+
+Bu bağlamda, \textbf{projenin temel amacı} basitleştirilmiş bir e-ticaret sipariş ve ödeme sistemi için tasarlanan REST tabanlı web servisleri üzerinde yeniden kullanılabilir, modüler ve CI/CD uyumlu bir API test otomasyon çatısı geliştirmektir.
+
+\textbf{Projenin hedefleri:}
+\begin{enumerate}
+    \item Ürün, sipariş, ödeme ve kullanıcı varlıklarını içeren örnek bir E-Ticaret REST API'si geliştirmek
+    \item Fonksiyonel, negatif ve sınır değeri testlerini otomatikleştirmek
+    \item Test paketini GitHub Actions ile sürekli entegrasyon ortamına entegre etmek
+    \item Test sonuçlarını JUnit ve HTML formatlarda raporlamak
+\end{enumerate}
 
 \subsection{İlgili Çalışmalar}
 
-RESTful API test otomasyonu alanında çeşitli akademik çalışmalar ve araçlar bulunmaktadır. Bu bölümde projeyle ilgili temel çalışmalar incelenmektedir.
+RESTful API test otomasyonu alanında son yıllarda önemli akademik çalışmalar gerçekleştirilmiştir. Bu bölümde projemizin teorik temellerini oluşturan araştırmalar incelenmektedir.
 
-\textbf{[1] A. Golmohammadi, M. Zhang, A. Arcuri, "Testing RESTful APIs: A Survey":} Bu çalışma, RESTful API testine yönelik yaklaşımları kapsamlı bir şekilde derlemekte ve kara-kutu, model tabanlı, arama tabanlı ve sözleşme tabanlı yaklaşımları sınıflandırmaktadır. Çalışma, API test otomasyonunun gelişim sürecini ve mevcut zorlukları ortaya koymaktadır. Bizim projemiz için genel kavramsal çerçeveyi sağlamıştır.
+\subsubsection{REST API Test Araştırmaları}
 
-\textbf{[2] G. Martin-Lopez et al., "RESTest: Automated Black-Box Testing of RESTful Web APIs":} Bu çalışma, OpenAPI/Swagger tanımlarından yararlanarak REST API'ler için otomatik kara-kutu test senaryoları üreten bir araç önermektedir. RESTest, sözleşme tabanlı test tasarımının önemini vurgulayarak, API spesifikasyonlarından test senaryoları türetme yaklaşımını benimsemektedir. Projemizde benzer şekilde OpenAPI sözleşmesi temel alınmıştır.
+Golmohammadi ve arkadaşları (2023), REST API testine yönelik mevcut yaklaşımları kapsamlı bir şekilde inceleyen bir literatür taraması gerçekleştirmiştir [1]. Çalışmada 92 bilimsel makale analiz edilmiş ve test yaklaşımları dört ana kategoride sınıflandırılmıştır: kara-kutu testleri, beyaz-kutu testleri, model tabanlı testler ve sözleşme tabanlı testler. Araştırma, ağ iletişimi ve harici servis bağımlılıklarının API testindeki temel zorlukları oluşturduğunu ortaya koymaktadır.
 
-\textbf{[3] E. Viglianisi et al., "RESTTESTGEN: Automated Black-box Testing of RESTful APIs":} Swagger arayüz tanımlarına dayalı olarak test istekleri ve oracle'lar üreten bir otomatik test aracı sunmaktadır. RESTTESTGEN, operasyon bağımlılıklarını analiz ederek anlamlı test dizileri oluşturmaktadır. Bizim çalışmamız ise benzer prensipleri manuel ve hafif bir test çatısında uygulamayı hedeflemektedir.
+Martin-Lopez ve arkadaşları (2021), OpenAPI spesifikasyonlarından otomatik test senaryoları üreten RESTest aracını geliştirmiştir [2]. Araç, fuzzing ve kısıtlama tabanlı test üretimini desteklemekte olup, hem çevrimdışı hem de çevrimiçi test senaryolarında başarıyla değerlendirilmiştir.
 
-\textbf{[4] D. Dimoski, N. Avresky, "Testing RESTful APIs":} Bu çalışma, birden fazla REST API test aracını özellikleri ve kullanım kolaylığı açısından karşılaştırmaktadır. Araştırma, belirli senaryolar için alan-odaklı, kod tabanlı çözümlere duyulan ihtiyacı ortaya koymaktadır. Projemizde pytest tabanlı özelleştirilmiş bir test çatısı tercih edilmesinin temel gerekçelerini desteklemektedir.
+Viglianisi ve arkadaşları (2020), Swagger tanımlarından test istekleri üreten RESTTESTGEN aracını sunmuştur [3]. Araç, 87 gerçek dünya API'sinde başarıyla hatalar tespit etmiş olup, kaynak koda erişim gerektirmeden etkili kara-kutu testi yapılabileceğini göstermiştir.
 
-% ===== BÖLÜM 2: PROBLEM TANIMI VE MEVCUT YÖNTEMLER (15 puan) =====
+\subsubsection{Test Tasarım Teknikleri}
+
+Basili ve Selby (1987), fonksiyonel test tekniklerini deneysel olarak karşılaştıran öncül bir çalışma gerçekleştirmiştir [4]. Araştırma, eşdeğer bölgeleme ve sınır değer analizinin kontrol hatalarını tespit etmede diğer yöntemlerden daha etkili olduğunu ortaya koymuştur.
+
+Reid (1997), havacılık sistemleri üzerinde yapılan deneylerle sınır değer analizinin (BVA) eşdeğer bölgeleme ve rastgele testten daha yüksek hata tespit oranı sağladığını kanıtlamıştır [5].
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BÖLÜM 2: PROBLEM TANIMI VE MEVCUT YÖNTEMLER (15 puan)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Problem Tanımı ve Mevcut Yöntemler}
 
 \subsection{Problem Tanımı}
 
-E-ticaret sistemlerinde sipariş ve ödeme akışları iş açısından kritik işlevlerdir. Bu akışlarda yaşanan hatalar:
-\begin{itemize}
-    \item Müşteri memnuniyetsizliğine
-    \item Gelir kaybına
-    \item İtibar zedelenmesine
-\end{itemize}
-yol açabilmektedir.
+E-ticaret sistemlerinde sipariş ve ödeme akışları, iş sürekliliği açısından kritik işlevlerdir. Sommerville (2016)'in belirttiği gibi, yazılım kalite güvencesi sistematik bir yaklaşım gerektirir ve hatalı yazılım ciddi sonuçlara yol açabilir [6]. Myers ve arkadaşları (2011), yazılım testinin temel amacının ``programda hata bulmak'' olduğunu vurgulamıştır [7].
 
-Tipik bir e-ticaret akışı şu adımları içerir:
+Tipik bir e-ticaret alışveriş akışı aşağıdaki adımları içerir:
 \begin{enumerate}
-    \item Kullanıcı kaydı ve kimlik doğrulama
-    \item Ürün listeleme ve detay görüntüleme
-    \item Sepete ürün ekleme ve sipariş oluşturma
-    \item Ödeme işlemi
-    \item Sipariş durumu takibi
+    \item \textbf{Kullanıcı Kaydı:} Yeni müşterilerin sisteme kaydolması
+    \item \textbf{Kimlik Doğrulama:} Kayıtlı kullanıcıların sisteme giriş yapması
+    \item \textbf{Ürün Listeleme:} Mevcut ürünlerin görüntülenmesi
+    \item \textbf{Sipariş Oluşturma:} Sepete ürün ekleme ve sipariş verme
+    \item \textbf{Ödeme İşlemi:} Siparişin ödenmesi
+    \item \textbf{Sipariş Takibi:} Sipariş durumunun izlenmesi
 \end{enumerate}
 
-Her adımda çeşitli iş kuralları ve doğrulamalar gereklidir:
+Her adımda test edilmesi gereken çeşitli iş kuralları bulunmaktadır:
 \begin{itemize}
-    \item \textbf{Kimlik doğrulama:} JWT tabanlı token yönetimi
-    \item \textbf{Yetkilendirme:} Rol bazlı erişim kontrolü (müşteri/admin)
+    \item \textbf{Kimlik doğrulama:} JWT (JSON Web Token) tabanlı oturum yönetimi
+    \item \textbf{Yetkilendirme:} Rol bazlı erişim kontrolü (RBAC) -- müşteri ve admin rolleri
     \item \textbf{Stok kontrolü:} Yetersiz stokta sipariş engelleme
-    \item \textbf{Sepet kuralları:} Minimum (50 TRY) ve maksimum (5000 TRY) tutarlar
-    \item \textbf{Miktar sınırları:} Ürün başına 1-10 adet
+    \item \textbf{Sepet kuralları:} Minimum 50 TRY ve maksimum 5000 TRY tutar kısıtlamaları
+    \item \textbf{Miktar sınırları:} Ürün başına 1-10 adet kısıtlaması
 \end{itemize}
 
 \subsection{Mevcut Yaklaşımlar ve Araçlar}
 
-API test otomasyonu için çeşitli araçlar mevcuttur:
+API test otomasyonu için çeşitli araçlar ve yaklaşımlar mevcuttur. Tablo 1'de popüler araçların karşılaştırması sunulmaktadır.
 
 \begin{table}[H]
 \centering
 \caption{API Test Araçları Karşılaştırması}
 \begin{tabular}{|l|c|c|c|c|}
 \hline
-\textbf{Araç} & \textbf{Programlama} & \textbf{CI/CD} & \textbf{Raporlama} & \textbf{Öğrenme Eğrisi} \\
+\textbf{Araç} & \textbf{Programlama} & \textbf{CI/CD} & \textbf{Raporlama} & \textbf{Öğrenme} \\
 \hline
-Postman & Düşük kod & Orta & İyi & Düşük \\
+Postman & Düşük kod & Orta & İyi & Kolay \\
 REST Assured & Java & Yüksek & İyi & Orta \\
 pytest + requests & Python & Yüksek & Esnek & Orta \\
 Karate & DSL & Yüksek & İyi & Orta \\
@@ -181,37 +172,40 @@ Karate & DSL & Yüksek & İyi & Orta \\
 
 \textbf{Postman:}
 \begin{itemize}
-    \item[+] Görsel arayüz, hızlı başlangıç
-    \item[-] Karmaşık test senaryoları için sınırlı, versiyon kontrolü zor
+    \item Güçlü yönleri: Görsel arayüz, hızlı prototipleme, kolay kullanım
+    \item Zayıf yönleri: Karmaşık test senaryoları için sınırlı, versiyon kontrolü zor
 \end{itemize}
 
 \textbf{REST Assured (Java):}
 \begin{itemize}
-    \item[+] Güçlü DSL, kurumsal destek
-    \item[-] JVM bağımlılığı, verbose sözdizimi
+    \item Güçlü yönleri: Güçlü DSL, kurumsal destek, geniş topluluk
+    \item Zayıf yönleri: JVM bağımlılığı, verbose sözdizimi
 \end{itemize}
 
 \textbf{pytest + requests (Python):}
 \begin{itemize}
-    \item[+] Esnek, geniş ekosistem, fixture desteği
-    \item[-] Yapılandırma gerektirir
+    \item Güçlü yönleri: Esnek, geniş ekosistem, fixture desteği
+    \item Zayıf yönleri: Başlangıç yapılandırması gerektirir
 \end{itemize}
 
 \subsection{Önerilen Çözüm}
 
 Bu projede \textbf{pytest + requests} kombinasyonu tercih edilmiştir. Tercih nedenleri:
 \begin{enumerate}
-    \item Python'un okunabilirliği ve öğrenme kolaylığı
-    \item pytest'in güçlü fixture mekanizması
+    \item Python'un okunabilir ve öğrenilmesi kolay sözdizimi
+    \item pytest'in güçlü fixture mekanizması ile test bağımlılık yönetimi
     \item Modüler ve genişletilebilir mimari tasarımına uygunluk
-    \item GitHub Actions ile kolay entegrasyon
-    \item JUnit/HTML raporlama desteği
+    \item GitHub Actions ile kolay CI/CD entegrasyonu
+    \item JUnit XML ve HTML formatlarda raporlama desteği
+    \item Marker sistemi ile test kategorizasyonu
 \end{enumerate}
 
-% ===== BÖLÜM 3: SİSTEM TASARIMI VE UYGULAMA GELİŞTİRME (40 puan) =====
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BÖLÜM 3: SİSTEM TASARIMI VE UYGULAMA GELİŞTİRME (40 puan)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Sistem Tasarımı ve Uygulama Geliştirme}
 
-\subsection{Sistem/Araç Tasarımı}
+\subsection{Sistem Mimarisi}
 
 Proje iki ana bileşenden oluşmaktadır:
 \begin{enumerate}
@@ -219,33 +213,66 @@ Proje iki ana bileşenden oluşmaktadır:
     \item \textbf{Test Otomasyon Çatısı:} pytest tabanlı modüler test framework
 \end{enumerate}
 
-\subsubsection{Mimari Genel Bakış}
+\subsubsection{API Mimarisi}
 
-Sistem katmanlı bir mimari izlemektedir:
+FastAPI kullanılarak geliştirilen REST API, aşağıdaki özelliklere sahiptir:
+\begin{itemize}
+    \item Otomatik OpenAPI (Swagger) dokümantasyonu
+    \item Pydantic tabanlı veri doğrulama
+    \item JWT tabanlı kimlik doğrulama
+    \item Bcrypt ile şifre hashleme
+    \item Thread-safe bellek içi depolama
+\end{itemize}
 
-\begin{figure}[H]
+\subsubsection{Test Çatısı Mimarisi}
+
+Test çatısı katmanlı bir mimari izlemektedir:
+
+\textbf{1. Test Katmanı (test\_*.py):} Pytest test fonksiyonlarını içerir. Her test fonksiyonu bağımsız çalışır ve belirli bir senaryoyu test eder.
+
+\textbf{2. Client Katmanı:} Domain-bazlı HTTP istemcileri sağlar:
+\begin{itemize}
+    \item AuthClient: Kayıt ve giriş işlemleri
+    \item ProductClient: Ürün CRUD işlemleri
+    \item OrderClient: Sipariş oluşturma ve yönetimi
+    \item PaymentClient: Ödeme işlemleri
+\end{itemize}
+
+\textbf{3. Doğrulama Katmanı:} Response ve schema doğrulama yardımcıları:
+\begin{itemize}
+    \item assert\_status\_code(): HTTP durum kodu kontrolü
+    \item validate\_order\_schema(): Sipariş yanıt şeması doğrulama
+    \item validate\_error\_response\_schema(): Hata yanıt şeması doğrulama
+\end{itemize}
+
+\textbf{4. Veri Katmanı:} Test verisi üretim yardımcıları:
+\begin{itemize}
+    \item create\_order\_items(): Sipariş ögesi oluşturma
+    \item generate\_email(): Benzersiz e-posta adresi üretimi
+\end{itemize}
+
+\subsection{İş Kuralları}
+
+API'de uygulanan iş kuralları Tablo 2'de özetlenmiştir.
+
+\begin{table}[H]
 \centering
-\begin{tikzpicture}[
-    box/.style={draw, rectangle, minimum width=3cm, minimum height=1cm, align=center},
-    layer/.style={draw, rectangle, minimum width=12cm, minimum height=1.5cm, align=center, fill=blue!10}
-]
-    % Test Layer
-    \node[layer, fill=green!20] at (0, 4) {Test Katmanı (test\_*.py)};
-    
-    % Client Layer
-    \node[layer, fill=yellow!20] at (0, 2.5) {Client Katmanı (AuthClient, ProductClient, OrderClient, PaymentClient)};
-    
-    % Assertion Layer
-    \node[layer, fill=orange!20] at (0, 1) {Doğrulama Katmanı (assertions, schema\_validator)};
-    
-    % API Layer
-    \node[layer, fill=red!20] at (0, -0.5) {API Katmanı (FastAPI - SUT)};
-    
-\end{tikzpicture}
-\caption{Test Otomasyon Çatısı Mimari Diyagramı}
-\end{figure}
+\caption{Uygulanan İş Kuralları}
+\begin{tabular}{|l|c|l|}
+\hline
+\textbf{Kural} & \textbf{Değer} & \textbf{Açıklama} \\
+\hline
+MIN\_CART\_TOTAL & 50 TRY & Minimum sepet tutarı \\
+MAX\_CART\_TOTAL & 5000 TRY & Maksimum sepet tutarı \\
+MIN\_QTY & 1 & Ürün başına minimum miktar \\
+MAX\_QTY & 10 & Ürün başına maksimum miktar \\
+\hline
+\end{tabular}
+\end{table}
 
-\subsubsection{API Endpoint'leri}
+\subsection{API Endpoint'leri}
+
+Geliştirilen API'de 11 endpoint bulunmaktadır. Tablo 3'te endpoint özeti verilmiştir.
 
 \begin{table}[H]
 \centering
@@ -254,26 +281,26 @@ Sistem katmanlı bir mimari izlemektedir:
 \hline
 \textbf{Grup} & \textbf{Endpoint} & \textbf{Açıklama} \\
 \hline
-Health & GET /health & Sağlık kontrolü \\
+Health & GET /health & Sistem sağlık kontrolü \\
 \hline
 Auth & POST /auth/register & Kullanıcı kaydı \\
-     & POST /auth/login & Giriş (JWT token) \\
+Auth & POST /auth/login & Kullanıcı girişi (JWT) \\
 \hline
 Products & GET /products & Ürün listesi \\
-         & GET /products/\{id\} & Ürün detayı \\
-         & POST /products & Ürün oluştur (admin) \\
+Products & GET /products/\{id\} & Ürün detayı \\
+Products & POST /products & Ürün oluşturma (admin) \\
 \hline
-Orders & POST /orders & Sipariş oluştur \\
-       & GET /orders/\{id\} & Sipariş detayı \\
-       & POST /orders/\{id\}/cancel & Sipariş iptali \\
+Orders & POST /orders & Sipariş oluşturma \\
+Orders & GET /orders/\{id\} & Sipariş detayı \\
+Orders & POST /orders/\{id\}/cancel & Sipariş iptali \\
 \hline
-Payments & POST /payments & Ödeme oluştur \\
-         & GET /payments/\{id\} & Ödeme detayı \\
+Payments & POST /payments & Ödeme oluşturma \\
+Payments & GET /payments/\{id\} & Ödeme detayı \\
 \hline
 \end{tabular}
 \end{table}
 
-\subsection{Kullanılan Teknolojiler ve Araçlar}
+\subsection{Kullanılan Teknolojiler}
 
 \begin{table}[H]
 \centering
@@ -292,15 +319,33 @@ CI/CD & GitHub Actions & Ücretsiz, kolay entegrasyon \\
 \end{tabular}
 \end{table}
 
-\subsection{Uygulama Geliştirme}
+\subsection{Test Senaryoları}
 
-\subsubsection{Test Senaryoları}
+Test senaryoları aşağıdaki kara-kutu test tasarım teknikleri kullanılarak tasarlanmıştır:
 
-Test senaryoları şu teknikler kullanılarak tasarlanmıştır:
+\subsubsection{Eşdeğer Bölgeleme}
+
+Giriş alanı geçerli ve geçersiz değer sınıflarına ayrılmıştır. Örneğin:
 \begin{itemize}
-    \item \textbf{Eşdeğer Bölgeleme:} Geçerli/geçersiz giriş sınıfları
-    \item \textbf{Sınır Değer Analizi:} min/max değerler (50-5000 TRY, 1-10 adet)
-    \item \textbf{Negatif Test:} Hatalı girişler, yetkisiz erişim
+    \item Geçerli e-posta: user@example.com
+    \item Geçersiz e-posta: invalid-email
+\end{itemize}
+
+\subsubsection{Sınır Değer Analizi}
+
+Kritik sınır değerleri test edilmiştir:
+\begin{itemize}
+    \item Miktar: qty=1 (min), qty=10 (max), qty=11 (max+1)
+    \item Sepet tutarı: 50 TRY (min), 5000 TRY (max)
+\end{itemize}
+
+\subsubsection{Negatif Testler}
+
+Hatalı girişler ve yetkisiz erişim denemeleri:
+\begin{itemize}
+    \item Yanlış şifre ile giriş
+    \item Geçersiz token ile istek
+    \item Yetersiz stokta sipariş
 \end{itemize}
 
 \begin{table}[H]
@@ -322,16 +367,16 @@ Smoke (E2E) & 1 & Uçtan uca kritik akış \\
 \end{tabular}
 \end{table}
 
-\subsubsection{Örnek Test Kodu}
+\subsection{Örnek Test Kodu}
 
-Sınır değer testi örneği:
+Aşağıda sınır değer testi örneği verilmiştir:
 
 \begin{lstlisting}[language=Python, caption=Sınır Değer Testi Örneği]
 @pytest.mark.orders
-def test_ord_09_cart_total_at_minimum_boundary(
+def test_cart_total_at_minimum_boundary(
     product_client, order_client, admin_token, customer_token
 ):
-    """ORD-09: cart total exactly 50 TRY should succeed"""
+    """Cart total exactly 50 TRY should succeed"""
     # Create product with price = 50 TRY
     p = product_client.create_product(
         admin_token, name="FiftyProduct", price=50.0, stock=10
@@ -343,15 +388,26 @@ def test_ord_09_cart_total_at_minimum_boundary(
     )
     
     assert_status_code(r, 201)
-    validate_order_schema(r.json())
     assert r.json()["totalAmount"] == 50.0
 \end{lstlisting}
 
-\subsubsection{Test Çıktıları}
+\subsection{CI/CD Entegrasyonu}
+
+GitHub Actions kullanılarak sürekli entegrasyon yapılandırılmıştır. Her push işleminde:
+\begin{enumerate}
+    \item Python ortamı kurulur
+    \item Bağımlılıklar yüklenir
+    \item API sunucusu başlatılır
+    \item Tüm testler çalıştırılır
+    \item JUnit ve HTML raporları oluşturulur
+    \item Raporlar artifact olarak yüklenir
+\end{enumerate}
+
+\subsection{Test Çıktıları}
 
 Tüm testler başarıyla geçmiştir:
 
-\begin{lstlisting}[caption=Test Çalıştırma Sonucu]
+\begin{verbatim}
 ============================= test session starts ==============================
 platform darwin -- Python 3.14.0, pytest-9.0.2
 collected 23 items
@@ -364,38 +420,14 @@ tests/test_products.py ....                                              [ 95%]
 tests/test_smoke.py .                                                    [100%]
 
 ============================= 23 passed in 10.64s ==============================
-\end{lstlisting}
+\end{verbatim}
 
-\subsubsection{CI/CD Entegrasyonu}
-
-GitHub Actions ile sürekli entegrasyon yapılandırılmıştır:
-
-\begin{lstlisting}[language=yaml, caption=GitHub Actions Workflow (ci.yml)]
-name: ci
-on:
-  push:
-    branches: ["main"]
-jobs:
-  smoke:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-      - run: pip install -r requirements.txt
-      - run: uvicorn api.main:app --host 127.0.0.1 --port 8000 &
-      - run: pytest -v --junitxml=junit-report.xml
-      - uses: actions/upload-artifact@v4
-        with:
-          name: pytest-results
-          path: junit-report.xml
-\end{lstlisting}
-
-% ===== BÖLÜM 4: TARTIŞMA VE SONUÇ (20 puan) =====
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BÖLÜM 4: TARTIŞMA VE SONUÇ (20 puan)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Tartışma ve Sonuç}
 
-\subsection{Performans ve Doğruluk Değerlendirmesi}
+\subsection{Performans Değerlendirmesi}
 
 Geliştirilen test otomasyon çatısı aşağıdaki metrikleri sağlamıştır:
 
@@ -407,7 +439,7 @@ Geliştirilen test otomasyon çatısı aşağıdaki metrikleri sağlamıştır:
 \textbf{Metrik} & \textbf{Değer} \\
 \hline
 Toplam Test Sayısı & 23 \\
-Başarılı Test & 23 (\%100) \\
+Başarılı Test & 23 (100\%) \\
 Başarısız Test & 0 \\
 Toplam Çalışma Süresi & 10.64 saniye \\
 Ortalama Test Süresi & 0.46 saniye \\
@@ -417,56 +449,94 @@ Ortalama Test Süresi & 0.46 saniye \\
 
 \subsection{Çalışmanın Önemi ve Katkıları}
 
-Bu proje, yazılım kalite güvencesi alanına şu katkıları sağlamaktadır:
+Bu proje, yazılım kalite güvencesi alanına aşağıdaki katkıları sağlamaktadır:
 
 \begin{enumerate}
-    \item \textbf{Yeniden Kullanılabilir Çatı:} Domain-bazlı client sınıfları ve assertion helper'lar, farklı projelerde kolayca adapte edilebilir.
+    \item \textbf{Yeniden Kullanılabilir Çatı:} Domain-bazlı client sınıfları ve assertion helper'lar, farklı projelerde kolayca adapte edilebilir. Örneğin, yeni bir API endpoint'i test etmek için sadece ilgili client sınıfına yeni bir metod eklemek yeterlidir.
     
-    \item \textbf{Test Tasarım Teknikleri Uygulaması:} Eşdeğer bölgeleme, sınır değer analizi ve negatif test teknikleri somut örneklerle gösterilmiştir.
+    \item \textbf{Test Tasarım Teknikleri Uygulaması:} Eşdeğer bölgeleme, sınır değer analizi ve negatif test teknikleri somut örneklerle gösterilmiştir. Bu teknikler, test kapsamını sistematik olarak artırmaya yardımcı olmaktadır.
     
-    \item \textbf{CI/CD Entegrasyonu:} Testlerin her değişiklikte otomatik çalışması, regresyon hatalarının erken tespitini sağlar.
+    \item \textbf{CI/CD Entegrasyonu:} Testlerin her kod değişikliğinde otomatik çalıştırılması, regresyon hatalarının erken tespitini sağlamaktadır.
     
-    \item \textbf{Dokümantasyon ve İzlenebilirlik:} OpenAPI sözleşmesi ve test kataloğu arasındaki eşleştirme, test kapsamının doğrulanabilmesini sağlar.
+    \item \textbf{Dokümantasyon ve İzlenebilirlik:} OpenAPI sözleşmesi ve test kataloğu arasındaki eşleştirme, test kapsamının doğrulanabilmesini sağlamaktadır.
 \end{enumerate}
 
-\subsection{Kısıtlamalar ve Gelecek Çalışmalar}
-
-\subsubsection{Kısıtlamalar}
+\subsection{Kısıtlamalar}
 
 \begin{itemize}
-    \item \textbf{In-Memory Depolama:} Veritabanı yerine bellek içi depolama kullanılmıştır. Gerçek uygulamalarda veritabanı entegrasyonu gerekir.
+    \item \textbf{In-Memory Depolama:} Veritabanı yerine bellek içi depolama kullanılmıştır. Gerçek uygulamalarda veritabanı entegrasyonu gereklidir.
     
-    \item \textbf{Performans Testi Yok:} Yük ve stres testleri kapsam dışında bırakılmıştır.
+    \item \textbf{Performans Testi Yok:} Yük ve stres testleri proje kapsamında yer almamaktadır.
     
     \item \textbf{Güvenlik Testi Sınırlı:} OWASP Top 10 kapsamında güvenlik açığı taraması yapılmamıştır.
+    
+    \item \textbf{Tek Ortam:} Testler sadece lokal ve CI ortamında çalıştırılmıştır.
 \end{itemize}
 
-\subsubsection{Gelecek Çalışmalar}
+\subsection{Gelecek Çalışmalar}
 
+Projenin gelecek sürümlerinde aşağıdaki iyileştirmeler planlanmaktadır:
+
+\textbf{Altyapı İyileştirmeleri:}
 \begin{itemize}
-    \item Veritabanı entegrasyonu (PostgreSQL/MongoDB)
-    \item Property-based testing (Hypothesis kütüphanesi)
-    \item Performans testleri (Locust/k6)
-    \item Mock/stub kullanımı ile izole birim testleri
-    \item Konteyner tabanlı test ortamı (Docker)
+    \item Veritabanı entegrasyonu (PostgreSQL veya MongoDB) ile kalıcı veri depolama
+    \item Konteyner tabanlı test ortamı (Docker ve Docker Compose ile)
+    \item Çoklu ortam desteği (development, staging, production)
 \end{itemize}
 
-% ===== REFERANSLAR =====
+\textbf{Test Kapsamı Genişletme:}
+\begin{itemize}
+    \item Property-based testing (Hypothesis kütüphanesi ile rastgele test verisi üretimi)
+    \item Performans ve yük testleri (Locust veya k6 araçlarıyla)
+    \item Güvenlik testleri (OWASP ZAP entegrasyonu)
+    \item API versiyonlama ve geriye uyumluluk testleri
+\end{itemize}
+
+\textbf{Test Kalitesi Artırma:}
+\begin{itemize}
+    \item Mock/stub kullanımı ile izole birim testleri
+    \item Mutation testing ile test etkinliği ölçümü
+    \item Test kapsam raporlaması (pytest-cov entegrasyonu)
+    \item Paralel test çalıştırma (pytest-xdist ile)
+\end{itemize}
+
+\subsection{Sonuç}
+
+Bu projede, e-ticaret sipariş ve ödeme servisleri için modüler ve yeniden kullanılabilir bir REST API test otomasyon çatısı başarıyla geliştirilmiştir. Geliştirilen çatı, eşdeğer bölgeleme, sınır değer analizi ve negatif test gibi kara-kutu test tasarım tekniklerini uygulayarak 23 test senaryosunu otomatikleştirmiştir. Tüm testler \%100 başarı oranıyla geçmiş olup, GitHub Actions ile CI/CD entegrasyonu sağlanmıştır.
+
+Proje, yazılım kalite güvencesi alanında pratik bir uygulama sunmakta ve benzer API test projelerinde referans olarak kullanılabilecek bir altyapı sağlamaktadır.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% REFERANSLAR
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \section*{Referanslar}
 \addcontentsline{toc}{section}{Referanslar}
 
-\begin{enumerate}
-    \item A. Golmohammadi, M. Zhang, A. Arcuri, "Testing RESTful APIs: A Survey," \textit{ACM Computing Surveys}, 2023.
-    
-    \item G. Martin-Lopez, S. Segura, A. Ruiz-Cortes, "RESTest: Automated Black-Box Testing of RESTful Web APIs," \textit{Proc. 30th ACM SIGSOFT International Symposium on Software Testing and Analysis (ISSTA)}, 2021.
-    
-    \item E. Viglianisi, M. Dallago, M. Ceccato, "RESTTESTGEN: Automated Black-box Testing of RESTful APIs," \textit{Proc. IEEE/ACM 42nd International Conference on Software Engineering (ICSE)}, 2020.
-    
-    \item D. Dimoski, N. Avresky, "Testing RESTful APIs – Use Case: RESTful API for Solving Multidimensional Time-Independent Schrödinger Equation," \textit{International Journal of Computer Science and Information Technology}, 2019.
-    
-    \item FastAPI Documentation, \url{https://fastapi.tiangolo.com/}, Erişim: Aralık 2024.
-    
-    \item pytest Documentation, \url{https://docs.pytest.org/}, Erişim: Aralık 2024.
-\end{enumerate}
+\noindent [1] A. Golmohammadi, M. Zhang, and A. Arcuri, ``Testing RESTful APIs: A Survey,'' \textit{ACM Transactions on Software Engineering and Methodology}, vol. 33, no. 1, pp. 1--41, 2023. DOI: 10.1145/3617175
+
+\vspace{0.3cm}
+\noindent [2] A. Martin-Lopez, S. Segura, and A. Ruiz-Cortes, ``RESTest: Automated Black-Box Testing of RESTful Web APIs,'' in \textit{Proc. 30th ACM SIGSOFT International Symposium on Software Testing and Analysis (ISSTA '21)}, pp. 682--685, 2021. DOI: 10.1145/3460319.3469082
+
+\vspace{0.3cm}
+\noindent [3] E. Viglianisi, M. Dallago, and M. Ceccato, ``RESTTESTGEN: Automated Black-Box Testing of RESTful APIs,'' in \textit{Proc. IEEE 13th International Conference on Software Testing, Validation and Verification (ICST)}, pp. 142--152, 2020. DOI: 10.1109/ICST46399.2020.00024
+
+\vspace{0.3cm}
+\noindent [4] V. R. Basili and R. W. Selby, ``Comparing the Effectiveness of Software Testing Strategies,'' \textit{IEEE Transactions on Software Engineering}, vol. SE-13, no. 12, pp. 1278--1296, December 1987. DOI: 10.1109/TSE.1987.232881
+
+\vspace{0.3cm}
+\noindent [5] S. C. Reid, ``An Empirical Analysis of Equivalence Partitioning, Boundary Value Analysis and Random Testing,'' in \textit{Proc. Fourth International Software Metrics Symposium}, pp. 64--73, 1997. DOI: 10.1109/METRIC.1997.637166
+
+\vspace{0.3cm}
+\noindent [6] I. Sommerville, \textit{Software Engineering}, 10th ed. Pearson Education, 2016. ISBN: 978-0133943030
+
+\vspace{0.3cm}
+\noindent [7] G. J. Myers, C. Sandler, and T. Badgett, \textit{The Art of Software Testing}, 3rd ed. John Wiley \& Sons, 2011. ISBN: 978-1118031964
+
+\vspace{0.3cm}
+\noindent [8] FastAPI Documentation. [Online]. Available: \url{https://fastapi.tiangolo.com/} (Erişim: Aralık 2024)
+
+\vspace{0.3cm}
+\noindent [9] pytest Documentation. [Online]. Available: \url{https://docs.pytest.org/} (Erişim: Aralık 2024)
 
 \end{document}
