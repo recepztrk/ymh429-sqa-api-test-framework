@@ -1,0 +1,3789 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.13.9, pytest-8.4.2, pluggy-1.5.0
+rootdir: /Users/recepozturk/Desktop/SQA Project
+configfile: pytest.ini
+plugins: anyio-4.10.0
+collected 17 items
+
+tests/test_auth.py::test_auth_01_register_success 2025-12-29 18:24:16,573 - AuthClient - INFO - 
+================================================================================
+
+-------------------------------- live log call ---------------------------------
+2025-12-29 18:24:16 [    INFO] 
+================================================================================
+2025-12-29 18:24:16,573 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:16 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:16,573 - AuthClient - INFO - Body: {
+  "email": "test_66a02b54@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:16 [    INFO] Body: {
+  "email": "test_66a02b54@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:16,792 - AuthClient - INFO - 
+RESPONSE: 201
+2025-12-29 18:24:16 [    INFO] 
+RESPONSE: 201
+2025-12-29 18:24:16,792 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:15 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': 'efa68f02-3c3c-40b1-a49e-ae46ae77b050'}
+2025-12-29 18:24:16 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:15 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': 'efa68f02-3c3c-40b1-a49e-ae46ae77b050'}
+2025-12-29 18:24:16,792 - AuthClient - INFO - Body: {
+  "id": "283e795b-f2ee-406e-a042-2d17c957c006",
+  "email": "test_66a02b54@example.com",
+  "role": "customer"
+}
+2025-12-29 18:24:16 [    INFO] Body: {
+  "id": "283e795b-f2ee-406e-a042-2d17c957c006",
+  "email": "test_66a02b54@example.com",
+  "role": "customer"
+}
+2025-12-29 18:24:16,792 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:16 [    INFO] ================================================================================
+
+PASSED
+tests/test_auth.py::test_auth_02_register_invalid_email_returns_422 2025-12-29 18:24:16,793 - AuthClient - INFO - 
+================================================================================
+
+-------------------------------- live log call ---------------------------------
+2025-12-29 18:24:16 [    INFO] 
+================================================================================
+2025-12-29 18:24:16,793 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:16 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:16,793 - AuthClient - INFO - Body: {
+  "email": "not-an-email",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:16 [    INFO] Body: {
+  "email": "not-an-email",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:16,794 - AuthClient - INFO - 
+RESPONSE: 422
+2025-12-29 18:24:16 [    INFO] 
+RESPONSE: 422
+2025-12-29 18:24:16,794 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:15 GMT', 'server': 'uvicorn', 'content-length': '256', 'content-type': 'application/json', 'x-request-id': '62e53af3-d3dd-408d-85a7-a23e4a2518c4'}
+2025-12-29 18:24:16 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:15 GMT', 'server': 'uvicorn', 'content-length': '256', 'content-type': 'application/json', 'x-request-id': '62e53af3-d3dd-408d-85a7-a23e4a2518c4'}
+2025-12-29 18:24:16,794 - AuthClient - INFO - Body: {
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request",
+    "details": [
+      {
+        "loc": [
+          "body",
+          "email"
+        ],
+        "msg": "value is not a valid email address: An email address must have an @-sign.",
+        "type": "value_error"
+      }
+    ]
+  },
+  "requestId": "62e53af3-d3dd-408d-85a7-a23e4a2518c4"
+}
+2025-12-29 18:24:16 [    INFO] Body: {
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid request",
+    "details": [
+      {
+        "loc": [
+          "body",
+          "email"
+        ],
+        "msg": "value is not a valid email address: An email address must have an @-sign.",
+        "type": "value_error"
+      }
+    ]
+  },
+  "requestId": "62e53af3-d3dd-408d-85a7-a23e4a2518c4"
+}
+2025-12-29 18:24:16,794 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:16 [    INFO] ================================================================================
+
+PASSED
+tests/test_auth.py::test_auth_03_register_duplicate_email_returns_400 2025-12-29 18:24:16,795 - AuthClient - INFO - 
+================================================================================
+
+-------------------------------- live log call ---------------------------------
+2025-12-29 18:24:16 [    INFO] 
+================================================================================
+2025-12-29 18:24:16,795 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:16 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:16,795 - AuthClient - INFO - Body: {
+  "email": "test_9d018bef@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:16 [    INFO] Body: {
+  "email": "test_9d018bef@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:17,011 - AuthClient - INFO - 
+RESPONSE: 201
+2025-12-29 18:24:17 [    INFO] 
+RESPONSE: 201
+2025-12-29 18:24:17,011 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:15 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': '4d9db5dd-82f1-4a59-8b26-774acc8d751c'}
+2025-12-29 18:24:17 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:15 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': '4d9db5dd-82f1-4a59-8b26-774acc8d751c'}
+2025-12-29 18:24:17,011 - AuthClient - INFO - Body: {
+  "id": "4f1a941a-c728-4e24-a105-f753e18aced6",
+  "email": "test_9d018bef@example.com",
+  "role": "customer"
+}
+2025-12-29 18:24:17 [    INFO] Body: {
+  "id": "4f1a941a-c728-4e24-a105-f753e18aced6",
+  "email": "test_9d018bef@example.com",
+  "role": "customer"
+}
+2025-12-29 18:24:17,012 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:17 [    INFO] ================================================================================
+
+2025-12-29 18:24:17,012 - AuthClient - INFO - 
+================================================================================
+2025-12-29 18:24:17 [    INFO] 
+================================================================================
+2025-12-29 18:24:17,012 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:17 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:17,012 - AuthClient - INFO - Body: {
+  "email": "test_9d018bef@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:17 [    INFO] Body: {
+  "email": "test_9d018bef@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:17,013 - AuthClient - INFO - 
+RESPONSE: 400
+2025-12-29 18:24:17 [    INFO] 
+RESPONSE: 400
+2025-12-29 18:24:17,013 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:15 GMT', 'server': 'uvicorn', 'content-length': '146', 'content-type': 'application/json', 'x-request-id': '57b70a6b-eed2-40ee-bbc1-af6a894bbb03'}
+2025-12-29 18:24:17 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:15 GMT', 'server': 'uvicorn', 'content-length': '146', 'content-type': 'application/json', 'x-request-id': '57b70a6b-eed2-40ee-bbc1-af6a894bbb03'}
+2025-12-29 18:24:17,013 - AuthClient - INFO - Body: {
+  "error": {
+    "code": "BAD_REQUEST",
+    "message": "User with this email already exists",
+    "details": null
+  },
+  "requestId": "57b70a6b-eed2-40ee-bbc1-af6a894bbb03"
+}
+2025-12-29 18:24:17 [    INFO] Body: {
+  "error": {
+    "code": "BAD_REQUEST",
+    "message": "User with this email already exists",
+    "details": null
+  },
+  "requestId": "57b70a6b-eed2-40ee-bbc1-af6a894bbb03"
+}
+2025-12-29 18:24:17,013 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:17 [    INFO] ================================================================================
+
+PASSED
+tests/test_auth.py::test_auth_04_login_success 2025-12-29 18:24:17,013 - AuthClient - INFO - 
+================================================================================
+
+-------------------------------- live log setup --------------------------------
+2025-12-29 18:24:17 [    INFO] 
+================================================================================
+2025-12-29 18:24:17,013 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:17 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:17,013 - AuthClient - INFO - Body: {
+  "email": "test_25129025@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:17 [    INFO] Body: {
+  "email": "test_25129025@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:17,229 - AuthClient - INFO - 
+RESPONSE: 201
+2025-12-29 18:24:17 [    INFO] 
+RESPONSE: 201
+2025-12-29 18:24:17,230 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:15 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': '6f427743-6b20-401b-aa31-3eb100e7f454'}
+2025-12-29 18:24:17 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:15 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': '6f427743-6b20-401b-aa31-3eb100e7f454'}
+2025-12-29 18:24:17,230 - AuthClient - INFO - Body: {
+  "id": "e0b83c3f-c10a-4dc1-832d-462f61a47745",
+  "email": "test_25129025@example.com",
+  "role": "customer"
+}
+2025-12-29 18:24:17 [    INFO] Body: {
+  "id": "e0b83c3f-c10a-4dc1-832d-462f61a47745",
+  "email": "test_25129025@example.com",
+  "role": "customer"
+}
+2025-12-29 18:24:17,230 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:17 [    INFO] ================================================================================
+
+2025-12-29 18:24:17,230 - AuthClient - INFO - 
+================================================================================
+-------------------------------- live log call ---------------------------------
+2025-12-29 18:24:17 [    INFO] 
+================================================================================
+2025-12-29 18:24:17,230 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:17 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:17,230 - AuthClient - INFO - Body: {
+  "email": "test_25129025@example.com",
+  "password": "password123"
+}
+2025-12-29 18:24:17 [    INFO] Body: {
+  "email": "test_25129025@example.com",
+  "password": "password123"
+}
+2025-12-29 18:24:17,449 - AuthClient - INFO - 
+RESPONSE: 200
+2025-12-29 18:24:17 [    INFO] 
+RESPONSE: 200
+2025-12-29 18:24:17,449 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:15 GMT', 'server': 'uvicorn', 'content-length': '245', 'content-type': 'application/json', 'x-request-id': '519e8b37-79ca-409c-a20c-1d000fa4b09f'}
+2025-12-29 18:24:17 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:15 GMT', 'server': 'uvicorn', 'content-length': '245', 'content-type': 'application/json', 'x-request-id': '519e8b37-79ca-409c-a20c-1d000fa4b09f'}
+2025-12-29 18:24:17,450 - AuthClient - INFO - Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMGI4M2MzZi1jMTBhLTRkYzEtODMyZC00NjJmNjFhNDc3NDUiLCJyb2xlIjoiY3VzdG9tZXIiLCJleHAiOjE3NjcwMjU0NTd9.fSZ2ILWEJvMaC1vOkwMc1XqSVUntIEsabpcyCSNg6ro",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-29 18:24:17 [    INFO] Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMGI4M2MzZi1jMTBhLTRkYzEtODMyZC00NjJmNjFhNDc3NDUiLCJyb2xlIjoiY3VzdG9tZXIiLCJleHAiOjE3NjcwMjU0NTd9.fSZ2ILWEJvMaC1vOkwMc1XqSVUntIEsabpcyCSNg6ro",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-29 18:24:17,450 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:17 [    INFO] ================================================================================
+
+PASSED
+tests/test_auth.py::test_auth_05_login_wrong_password_returns_401 2025-12-29 18:24:17,450 - AuthClient - INFO - 
+================================================================================
+
+-------------------------------- live log setup --------------------------------
+2025-12-29 18:24:17 [    INFO] 
+================================================================================
+2025-12-29 18:24:17,450 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:17 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:17,450 - AuthClient - INFO - Body: {
+  "email": "test_97dbc3c1@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:17 [    INFO] Body: {
+  "email": "test_97dbc3c1@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:17,666 - AuthClient - INFO - 
+RESPONSE: 201
+2025-12-29 18:24:17 [    INFO] 
+RESPONSE: 201
+2025-12-29 18:24:17,666 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': '447ddf54-661a-439e-a2f7-810043c7ac79'}
+2025-12-29 18:24:17 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': '447ddf54-661a-439e-a2f7-810043c7ac79'}
+2025-12-29 18:24:17,666 - AuthClient - INFO - Body: {
+  "id": "eebf6a60-b8e1-4a74-9715-c0c3a6593253",
+  "email": "test_97dbc3c1@example.com",
+  "role": "customer"
+}
+2025-12-29 18:24:17 [    INFO] Body: {
+  "id": "eebf6a60-b8e1-4a74-9715-c0c3a6593253",
+  "email": "test_97dbc3c1@example.com",
+  "role": "customer"
+}
+2025-12-29 18:24:17,666 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:17 [    INFO] ================================================================================
+
+2025-12-29 18:24:17,667 - AuthClient - INFO - 
+================================================================================
+-------------------------------- live log call ---------------------------------
+2025-12-29 18:24:17 [    INFO] 
+================================================================================
+2025-12-29 18:24:17,667 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:17 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:17,667 - AuthClient - INFO - Body: {
+  "email": "test_97dbc3c1@example.com",
+  "password": "wrong-password"
+}
+2025-12-29 18:24:17 [    INFO] Body: {
+  "email": "test_97dbc3c1@example.com",
+  "password": "wrong-password"
+}
+2025-12-29 18:24:17,888 - AuthClient - INFO - 
+RESPONSE: 401
+2025-12-29 18:24:17 [    INFO] 
+RESPONSE: 401
+2025-12-29 18:24:17,888 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '131', 'content-type': 'application/json', 'x-request-id': '664d600e-b478-4f17-bc7e-64d21f0d1c0e'}
+2025-12-29 18:24:17 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '131', 'content-type': 'application/json', 'x-request-id': '664d600e-b478-4f17-bc7e-64d21f0d1c0e'}
+2025-12-29 18:24:17,888 - AuthClient - INFO - Body: {
+  "error": {
+    "code": "UNAUTHORIZED",
+    "message": "Invalid credentials",
+    "details": null
+  },
+  "requestId": "664d600e-b478-4f17-bc7e-64d21f0d1c0e"
+}
+2025-12-29 18:24:17 [    INFO] Body: {
+  "error": {
+    "code": "UNAUTHORIZED",
+    "message": "Invalid credentials",
+    "details": null
+  },
+  "requestId": "664d600e-b478-4f17-bc7e-64d21f0d1c0e"
+}
+2025-12-29 18:24:17,888 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:17 [    INFO] ================================================================================
+
+PASSED
+tests/test_health.py::test_hlth_01_health_ok PASSED
+tests/test_orders.py::test_ord_03_create_order_success 2025-12-29 18:24:17,891 - AuthClient - INFO - 
+================================================================================
+
+-------------------------------- live log setup --------------------------------
+2025-12-29 18:24:17 [    INFO] 
+================================================================================
+2025-12-29 18:24:17,891 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:17 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:17,891 - AuthClient - INFO - Body: {
+  "email": "test_8b586364@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:17 [    INFO] Body: {
+  "email": "test_8b586364@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:18,107 - AuthClient - INFO - 
+RESPONSE: 201
+2025-12-29 18:24:18 [    INFO] 
+RESPONSE: 201
+2025-12-29 18:24:18,107 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': '2e1d2b52-9b43-4f53-8aca-0b86c711dc8a'}
+2025-12-29 18:24:18 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': '2e1d2b52-9b43-4f53-8aca-0b86c711dc8a'}
+2025-12-29 18:24:18,108 - AuthClient - INFO - Body: {
+  "id": "9c0018db-1677-46d2-9e72-1f68a1fef80a",
+  "email": "test_8b586364@example.com",
+  "role": "customer"
+}
+2025-12-29 18:24:18 [    INFO] Body: {
+  "id": "9c0018db-1677-46d2-9e72-1f68a1fef80a",
+  "email": "test_8b586364@example.com",
+  "role": "customer"
+}
+2025-12-29 18:24:18,108 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:18 [    INFO] ================================================================================
+
+2025-12-29 18:24:18,108 - AuthClient - INFO - 
+================================================================================
+2025-12-29 18:24:18 [    INFO] 
+================================================================================
+2025-12-29 18:24:18,108 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:18 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:18,108 - AuthClient - INFO - Body: {
+  "email": "test_8b586364@example.com",
+  "password": "password123"
+}
+2025-12-29 18:24:18 [    INFO] Body: {
+  "email": "test_8b586364@example.com",
+  "password": "password123"
+}
+2025-12-29 18:24:18,324 - AuthClient - INFO - 
+RESPONSE: 200
+2025-12-29 18:24:18 [    INFO] 
+RESPONSE: 200
+2025-12-29 18:24:18,324 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '245', 'content-type': 'application/json', 'x-request-id': '2a051431-9c21-4a64-8c87-446bd22c54e1'}
+2025-12-29 18:24:18 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '245', 'content-type': 'application/json', 'x-request-id': '2a051431-9c21-4a64-8c87-446bd22c54e1'}
+2025-12-29 18:24:18,324 - AuthClient - INFO - Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5YzAwMThkYi0xNjc3LTQ2ZDItOWU3Mi0xZjY4YTFmZWY4MGEiLCJyb2xlIjoiY3VzdG9tZXIiLCJleHAiOjE3NjcwMjU0NTh9.mtsTXRjvr0NogAfRmJrV2rv9Fz7epk52R9ScKw6seeU",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-29 18:24:18 [    INFO] Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5YzAwMThkYi0xNjc3LTQ2ZDItOWU3Mi0xZjY4YTFmZWY4MGEiLCJyb2xlIjoiY3VzdG9tZXIiLCJleHAiOjE3NjcwMjU0NTh9.mtsTXRjvr0NogAfRmJrV2rv9Fz7epk52R9ScKw6seeU",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-29 18:24:18,324 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:18 [    INFO] ================================================================================
+
+2025-12-29 18:24:18,324 - ProductClient - INFO - 
+================================================================================
+-------------------------------- live log call ---------------------------------
+2025-12-29 18:24:18 [    INFO] 
+================================================================================
+2025-12-29 18:24:18,324 - ProductClient - INFO - REQUEST: GET http://127.0.0.1:8000/products
+2025-12-29 18:24:18 [    INFO] REQUEST: GET http://127.0.0.1:8000/products
+2025-12-29 18:24:18,326 - ProductClient - INFO - 
+RESPONSE: 200
+2025-12-29 18:24:18 [    INFO] 
+RESPONSE: 200
+2025-12-29 18:24:18,326 - ProductClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '1222', 'content-type': 'application/json', 'x-request-id': 'dd008318-766d-411d-9e5f-51fe3e45f55c'}
+2025-12-29 18:24:18 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '1222', 'content-type': 'application/json', 'x-request-id': 'dd008318-766d-411d-9e5f-51fe3e45f55c'}
+2025-12-29 18:24:18,326 - ProductClient - INFO - Body: [
+  {
+    "id": "53b57ad8-08fd-4038-a041-be3913eb614d",
+    "name": "Laptop",
+    "price": 15000.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8171d131-f967-424d-8b1b-1c26a21d197c",
+    "name": "Mouse",
+    "price": 150.0,
+    "currency": "TRY",
+    "stock": 45,
+    "isActive": true
+  },
+  {
+    "id": "11ea8333-2cd3-41f4-9c32-d0e5889f2259",
+    "name": "Keyboard",
+    "price": 500.0,
+    "currency": "TRY",
+    "stock": 30,
+    "isActive": true
+  },
+  {
+    "id": "10337be6-7142-4785-9a71-2f90189cf8b1",
+    "name": "Monitor",
+    "price": 3000.0,
+    "currency": "TRY",
+    "stock": 20,
+    "isActive": true
+  },
+  {
+    "id": "1cc45a67-8f8e-463c-8ae2-3c44a687a835",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "3cb49d6e-37ec-4889-b6f8-afef4502dcd9",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "6d8acf5c-8feb-4a4d-a990-870dd17ea5ca",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8e344fe2-2d8c-4092-8042-30187a36141d",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "2f8ad827-e093-497e-a860-c50a1244116b",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "778bb1ad-e4f8-40fe-b61d-9e0a39a88fa5",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  }
+]
+2025-12-29 18:24:18 [    INFO] Body: [
+  {
+    "id": "53b57ad8-08fd-4038-a041-be3913eb614d",
+    "name": "Laptop",
+    "price": 15000.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8171d131-f967-424d-8b1b-1c26a21d197c",
+    "name": "Mouse",
+    "price": 150.0,
+    "currency": "TRY",
+    "stock": 45,
+    "isActive": true
+  },
+  {
+    "id": "11ea8333-2cd3-41f4-9c32-d0e5889f2259",
+    "name": "Keyboard",
+    "price": 500.0,
+    "currency": "TRY",
+    "stock": 30,
+    "isActive": true
+  },
+  {
+    "id": "10337be6-7142-4785-9a71-2f90189cf8b1",
+    "name": "Monitor",
+    "price": 3000.0,
+    "currency": "TRY",
+    "stock": 20,
+    "isActive": true
+  },
+  {
+    "id": "1cc45a67-8f8e-463c-8ae2-3c44a687a835",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "3cb49d6e-37ec-4889-b6f8-afef4502dcd9",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "6d8acf5c-8feb-4a4d-a990-870dd17ea5ca",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8e344fe2-2d8c-4092-8042-30187a36141d",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "2f8ad827-e093-497e-a860-c50a1244116b",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "778bb1ad-e4f8-40fe-b61d-9e0a39a88fa5",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  }
+]
+2025-12-29 18:24:18,326 - ProductClient - INFO - ================================================================================
+
+2025-12-29 18:24:18 [    INFO] ================================================================================
+
+2025-12-29 18:24:18,326 - OrderClient - INFO - 
+================================================================================
+2025-12-29 18:24:18 [    INFO] 
+================================================================================
+2025-12-29 18:24:18,326 - OrderClient - INFO - REQUEST: POST http://127.0.0.1:8000/orders
+2025-12-29 18:24:18 [    INFO] REQUEST: POST http://127.0.0.1:8000/orders
+2025-12-29 18:24:18,326 - OrderClient - INFO - Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:18 [    INFO] Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:18,326 - OrderClient - INFO - Body: {
+  "items": [
+    {
+      "productId": "8171d131-f967-424d-8b1b-1c26a21d197c",
+      "qty": 1
+    }
+  ]
+}
+2025-12-29 18:24:18 [    INFO] Body: {
+  "items": [
+    {
+      "productId": "8171d131-f967-424d-8b1b-1c26a21d197c",
+      "qty": 1
+    }
+  ]
+}
+2025-12-29 18:24:18,328 - OrderClient - INFO - 
+RESPONSE: 201
+2025-12-29 18:24:18 [    INFO] 
+RESPONSE: 201
+2025-12-29 18:24:18,328 - OrderClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '261', 'content-type': 'application/json', 'x-request-id': '357a0e39-703e-4e2f-8ff0-136d9593e983'}
+2025-12-29 18:24:18 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '261', 'content-type': 'application/json', 'x-request-id': '357a0e39-703e-4e2f-8ff0-136d9593e983'}
+2025-12-29 18:24:18,328 - OrderClient - INFO - Body: {
+  "id": "c871c140-ae3b-417c-ab92-a7a3b734653c",
+  "userId": "9c0018db-1677-46d2-9e72-1f68a1fef80a",
+  "items": [
+    {
+      "productId": "8171d131-f967-424d-8b1b-1c26a21d197c",
+      "qty": 1
+    }
+  ],
+  "totalAmount": 150.0,
+  "currency": "TRY",
+  "status": "CREATED",
+  "createdAt": "2025-12-29T15:24:18.327831"
+}
+2025-12-29 18:24:18 [    INFO] Body: {
+  "id": "c871c140-ae3b-417c-ab92-a7a3b734653c",
+  "userId": "9c0018db-1677-46d2-9e72-1f68a1fef80a",
+  "items": [
+    {
+      "productId": "8171d131-f967-424d-8b1b-1c26a21d197c",
+      "qty": 1
+    }
+  ],
+  "totalAmount": 150.0,
+  "currency": "TRY",
+  "status": "CREATED",
+  "createdAt": "2025-12-29T15:24:18.327831"
+}
+2025-12-29 18:24:18,328 - OrderClient - INFO - ================================================================================
+
+2025-12-29 18:24:18 [    INFO] ================================================================================
+
+PASSED
+tests/test_orders.py::test_ord_17_order_total_exceeds_max_returns_422 2025-12-29 18:24:18,328 - AuthClient - INFO - 
+================================================================================
+
+-------------------------------- live log setup --------------------------------
+2025-12-29 18:24:18 [    INFO] 
+================================================================================
+2025-12-29 18:24:18,328 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:18 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:18,328 - AuthClient - INFO - Body: {
+  "email": "test_76e92693@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:18 [    INFO] Body: {
+  "email": "test_76e92693@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:18,544 - AuthClient - INFO - 
+RESPONSE: 201
+2025-12-29 18:24:18 [    INFO] 
+RESPONSE: 201
+2025-12-29 18:24:18,544 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': '16f122ed-3113-4400-a428-9b331f8b4e8d'}
+2025-12-29 18:24:18 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': '16f122ed-3113-4400-a428-9b331f8b4e8d'}
+2025-12-29 18:24:18,544 - AuthClient - INFO - Body: {
+  "id": "72f34fe0-3700-4e64-af1a-ff63f6b8c1b4",
+  "email": "test_76e92693@example.com",
+  "role": "customer"
+}
+2025-12-29 18:24:18 [    INFO] Body: {
+  "id": "72f34fe0-3700-4e64-af1a-ff63f6b8c1b4",
+  "email": "test_76e92693@example.com",
+  "role": "customer"
+}
+2025-12-29 18:24:18,544 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:18 [    INFO] ================================================================================
+
+2025-12-29 18:24:18,544 - AuthClient - INFO - 
+================================================================================
+2025-12-29 18:24:18 [    INFO] 
+================================================================================
+2025-12-29 18:24:18,544 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:18 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:18,544 - AuthClient - INFO - Body: {
+  "email": "test_76e92693@example.com",
+  "password": "password123"
+}
+2025-12-29 18:24:18 [    INFO] Body: {
+  "email": "test_76e92693@example.com",
+  "password": "password123"
+}
+2025-12-29 18:24:18,762 - AuthClient - INFO - 
+RESPONSE: 200
+2025-12-29 18:24:18 [    INFO] 
+RESPONSE: 200
+2025-12-29 18:24:18,763 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '245', 'content-type': 'application/json', 'x-request-id': '725a24ba-1315-4b07-a33b-92892167779b'}
+2025-12-29 18:24:18 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '245', 'content-type': 'application/json', 'x-request-id': '725a24ba-1315-4b07-a33b-92892167779b'}
+2025-12-29 18:24:18,763 - AuthClient - INFO - Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MmYzNGZlMC0zNzAwLTRlNjQtYWYxYS1mZjYzZjZiOGMxYjQiLCJyb2xlIjoiY3VzdG9tZXIiLCJleHAiOjE3NjcwMjU0NTh9.ovP-z7tF2lA-IbNYjvrfX1S1ox_rnMXf6Jy9ceND-y0",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-29 18:24:18 [    INFO] Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MmYzNGZlMC0zNzAwLTRlNjQtYWYxYS1mZjYzZjZiOGMxYjQiLCJyb2xlIjoiY3VzdG9tZXIiLCJleHAiOjE3NjcwMjU0NTh9.ovP-z7tF2lA-IbNYjvrfX1S1ox_rnMXf6Jy9ceND-y0",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-29 18:24:18,763 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:18 [    INFO] ================================================================================
+
+2025-12-29 18:24:18,763 - ProductClient - INFO - 
+================================================================================
+-------------------------------- live log call ---------------------------------
+2025-12-29 18:24:18 [    INFO] 
+================================================================================
+2025-12-29 18:24:18,763 - ProductClient - INFO - REQUEST: GET http://127.0.0.1:8000/products
+2025-12-29 18:24:18 [    INFO] REQUEST: GET http://127.0.0.1:8000/products
+2025-12-29 18:24:18,764 - ProductClient - INFO - 
+RESPONSE: 200
+2025-12-29 18:24:18 [    INFO] 
+RESPONSE: 200
+2025-12-29 18:24:18,764 - ProductClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '1222', 'content-type': 'application/json', 'x-request-id': 'af3db17b-2244-43bb-800a-2026d2cddc17'}
+2025-12-29 18:24:18 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '1222', 'content-type': 'application/json', 'x-request-id': 'af3db17b-2244-43bb-800a-2026d2cddc17'}
+2025-12-29 18:24:18,764 - ProductClient - INFO - Body: [
+  {
+    "id": "53b57ad8-08fd-4038-a041-be3913eb614d",
+    "name": "Laptop",
+    "price": 15000.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8171d131-f967-424d-8b1b-1c26a21d197c",
+    "name": "Mouse",
+    "price": 150.0,
+    "currency": "TRY",
+    "stock": 44,
+    "isActive": true
+  },
+  {
+    "id": "11ea8333-2cd3-41f4-9c32-d0e5889f2259",
+    "name": "Keyboard",
+    "price": 500.0,
+    "currency": "TRY",
+    "stock": 30,
+    "isActive": true
+  },
+  {
+    "id": "10337be6-7142-4785-9a71-2f90189cf8b1",
+    "name": "Monitor",
+    "price": 3000.0,
+    "currency": "TRY",
+    "stock": 20,
+    "isActive": true
+  },
+  {
+    "id": "1cc45a67-8f8e-463c-8ae2-3c44a687a835",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "3cb49d6e-37ec-4889-b6f8-afef4502dcd9",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "6d8acf5c-8feb-4a4d-a990-870dd17ea5ca",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8e344fe2-2d8c-4092-8042-30187a36141d",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "2f8ad827-e093-497e-a860-c50a1244116b",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "778bb1ad-e4f8-40fe-b61d-9e0a39a88fa5",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  }
+]
+2025-12-29 18:24:18 [    INFO] Body: [
+  {
+    "id": "53b57ad8-08fd-4038-a041-be3913eb614d",
+    "name": "Laptop",
+    "price": 15000.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8171d131-f967-424d-8b1b-1c26a21d197c",
+    "name": "Mouse",
+    "price": 150.0,
+    "currency": "TRY",
+    "stock": 44,
+    "isActive": true
+  },
+  {
+    "id": "11ea8333-2cd3-41f4-9c32-d0e5889f2259",
+    "name": "Keyboard",
+    "price": 500.0,
+    "currency": "TRY",
+    "stock": 30,
+    "isActive": true
+  },
+  {
+    "id": "10337be6-7142-4785-9a71-2f90189cf8b1",
+    "name": "Monitor",
+    "price": 3000.0,
+    "currency": "TRY",
+    "stock": 20,
+    "isActive": true
+  },
+  {
+    "id": "1cc45a67-8f8e-463c-8ae2-3c44a687a835",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "3cb49d6e-37ec-4889-b6f8-afef4502dcd9",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "6d8acf5c-8feb-4a4d-a990-870dd17ea5ca",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8e344fe2-2d8c-4092-8042-30187a36141d",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "2f8ad827-e093-497e-a860-c50a1244116b",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "778bb1ad-e4f8-40fe-b61d-9e0a39a88fa5",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  }
+]
+2025-12-29 18:24:18,764 - ProductClient - INFO - ================================================================================
+
+2025-12-29 18:24:18 [    INFO] ================================================================================
+
+2025-12-29 18:24:18,764 - OrderClient - INFO - 
+================================================================================
+2025-12-29 18:24:18 [    INFO] 
+================================================================================
+2025-12-29 18:24:18,764 - OrderClient - INFO - REQUEST: POST http://127.0.0.1:8000/orders
+2025-12-29 18:24:18 [    INFO] REQUEST: POST http://127.0.0.1:8000/orders
+2025-12-29 18:24:18,764 - OrderClient - INFO - Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:18 [    INFO] Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:18,764 - OrderClient - INFO - Body: {
+  "items": [
+    {
+      "productId": "53b57ad8-08fd-4038-a041-be3913eb614d",
+      "qty": 1
+    }
+  ]
+}
+2025-12-29 18:24:18 [    INFO] Body: {
+  "items": [
+    {
+      "productId": "53b57ad8-08fd-4038-a041-be3913eb614d",
+      "qty": 1
+    }
+  ]
+}
+2025-12-29 18:24:18,766 - OrderClient - INFO - 
+RESPONSE: 422
+2025-12-29 18:24:18 [    INFO] 
+RESPONSE: 422
+2025-12-29 18:24:18,766 - OrderClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '169', 'content-type': 'application/json', 'x-request-id': 'fccd7e94-f209-4805-b062-c537b025fdc2'}
+2025-12-29 18:24:18 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '169', 'content-type': 'application/json', 'x-request-id': 'fccd7e94-f209-4805-b062-c537b025fdc2'}
+2025-12-29 18:24:18,766 - OrderClient - INFO - Body: {
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Cart total cannot exceed 5000.0 TRY. Current: 15000.0",
+    "details": null
+  },
+  "requestId": "fccd7e94-f209-4805-b062-c537b025fdc2"
+}
+2025-12-29 18:24:18 [    INFO] Body: {
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Cart total cannot exceed 5000.0 TRY. Current: 15000.0",
+    "details": null
+  },
+  "requestId": "fccd7e94-f209-4805-b062-c537b025fdc2"
+}
+2025-12-29 18:24:18,766 - OrderClient - INFO - ================================================================================
+
+2025-12-29 18:24:18 [    INFO] ================================================================================
+
+PASSED
+tests/test_orders.py::test_ord_05_insufficient_stock_returns_409 2025-12-29 18:24:18,766 - AuthClient - INFO - 
+================================================================================
+
+-------------------------------- live log setup --------------------------------
+2025-12-29 18:24:18 [    INFO] 
+================================================================================
+2025-12-29 18:24:18,766 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:18 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:18,766 - AuthClient - INFO - Body: {
+  "email": "test_326b4515@example.com",
+  "password": "admin123",
+  "role": "admin"
+}
+2025-12-29 18:24:18 [    INFO] Body: {
+  "email": "test_326b4515@example.com",
+  "password": "admin123",
+  "role": "admin"
+}
+2025-12-29 18:24:18,987 - AuthClient - INFO - 
+RESPONSE: 201
+2025-12-29 18:24:18 [    INFO] 
+RESPONSE: 201
+2025-12-29 18:24:18,987 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '96', 'content-type': 'application/json', 'x-request-id': '6f1f629b-a104-4391-91e9-f53d484e7fc5'}
+2025-12-29 18:24:18 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '96', 'content-type': 'application/json', 'x-request-id': '6f1f629b-a104-4391-91e9-f53d484e7fc5'}
+2025-12-29 18:24:18,987 - AuthClient - INFO - Body: {
+  "id": "21df89a6-0069-4cdd-9a69-976dee864ee0",
+  "email": "test_326b4515@example.com",
+  "role": "admin"
+}
+2025-12-29 18:24:18 [    INFO] Body: {
+  "id": "21df89a6-0069-4cdd-9a69-976dee864ee0",
+  "email": "test_326b4515@example.com",
+  "role": "admin"
+}
+2025-12-29 18:24:18,987 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:18 [    INFO] ================================================================================
+
+2025-12-29 18:24:18,987 - AuthClient - INFO - 
+================================================================================
+2025-12-29 18:24:18 [    INFO] 
+================================================================================
+2025-12-29 18:24:18,987 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:18 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:18,987 - AuthClient - INFO - Body: {
+  "email": "test_326b4515@example.com",
+  "password": "admin123"
+}
+2025-12-29 18:24:18 [    INFO] Body: {
+  "email": "test_326b4515@example.com",
+  "password": "admin123"
+}
+2025-12-29 18:24:19,207 - AuthClient - INFO - 
+RESPONSE: 200
+2025-12-29 18:24:19 [    INFO] 
+RESPONSE: 200
+2025-12-29 18:24:19,207 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '241', 'content-type': 'application/json', 'x-request-id': 'cf83f986-706e-4c62-94cf-13eea0c62dac'}
+2025-12-29 18:24:19 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '241', 'content-type': 'application/json', 'x-request-id': 'cf83f986-706e-4c62-94cf-13eea0c62dac'}
+2025-12-29 18:24:19,207 - AuthClient - INFO - Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyMWRmODlhNi0wMDY5LTRjZGQtOWE2OS05NzZkZWU4NjRlZTAiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3NjcwMjU0NTl9.KWSBeP_UufTB_56igrcRfuPlBwr4-nDYIkV4NGYk8g8",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-29 18:24:19 [    INFO] Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyMWRmODlhNi0wMDY5LTRjZGQtOWE2OS05NzZkZWU4NjRlZTAiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3NjcwMjU0NTl9.KWSBeP_UufTB_56igrcRfuPlBwr4-nDYIkV4NGYk8g8",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-29 18:24:19,207 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:19 [    INFO] ================================================================================
+
+2025-12-29 18:24:19,207 - AuthClient - INFO - 
+================================================================================
+2025-12-29 18:24:19 [    INFO] 
+================================================================================
+2025-12-29 18:24:19,207 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:19 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:19,207 - AuthClient - INFO - Body: {
+  "email": "test_0d1f6817@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:19 [    INFO] Body: {
+  "email": "test_0d1f6817@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:19,427 - AuthClient - INFO - 
+RESPONSE: 201
+2025-12-29 18:24:19 [    INFO] 
+RESPONSE: 201
+2025-12-29 18:24:19,427 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': '2a4815ea-1b8c-46cc-a321-27086e1e04b1'}
+2025-12-29 18:24:19 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': '2a4815ea-1b8c-46cc-a321-27086e1e04b1'}
+2025-12-29 18:24:19,427 - AuthClient - INFO - Body: {
+  "id": "eeb4c632-9ab4-45c6-9579-6e67ec8eabb0",
+  "email": "test_0d1f6817@example.com",
+  "role": "customer"
+}
+2025-12-29 18:24:19 [    INFO] Body: {
+  "id": "eeb4c632-9ab4-45c6-9579-6e67ec8eabb0",
+  "email": "test_0d1f6817@example.com",
+  "role": "customer"
+}
+2025-12-29 18:24:19,427 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:19 [    INFO] ================================================================================
+
+2025-12-29 18:24:19,427 - AuthClient - INFO - 
+================================================================================
+2025-12-29 18:24:19 [    INFO] 
+================================================================================
+2025-12-29 18:24:19,427 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:19 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:19,427 - AuthClient - INFO - Body: {
+  "email": "test_0d1f6817@example.com",
+  "password": "password123"
+}
+2025-12-29 18:24:19 [    INFO] Body: {
+  "email": "test_0d1f6817@example.com",
+  "password": "password123"
+}
+2025-12-29 18:24:19,690 - AuthClient - INFO - 
+RESPONSE: 200
+2025-12-29 18:24:19 [    INFO] 
+RESPONSE: 200
+2025-12-29 18:24:19,690 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '245', 'content-type': 'application/json', 'x-request-id': 'a16ea6a1-50b8-46dc-8cda-cb1c70feeaa4'}
+2025-12-29 18:24:19 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:17 GMT', 'server': 'uvicorn', 'content-length': '245', 'content-type': 'application/json', 'x-request-id': 'a16ea6a1-50b8-46dc-8cda-cb1c70feeaa4'}
+2025-12-29 18:24:19,690 - AuthClient - INFO - Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlZWI0YzYzMi05YWI0LTQ1YzYtOTU3OS02ZTY3ZWM4ZWFiYjAiLCJyb2xlIjoiY3VzdG9tZXIiLCJleHAiOjE3NjcwMjU0NTl9.mvcAD0GEaeAR_eOjRFrNhwvavNq2PsgIzGDGWqvxCLg",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-29 18:24:19 [    INFO] Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlZWI0YzYzMi05YWI0LTQ1YzYtOTU3OS02ZTY3ZWM4ZWFiYjAiLCJyb2xlIjoiY3VzdG9tZXIiLCJleHAiOjE3NjcwMjU0NTl9.mvcAD0GEaeAR_eOjRFrNhwvavNq2PsgIzGDGWqvxCLg",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-29 18:24:19,690 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:19 [    INFO] ================================================================================
+
+2025-12-29 18:24:19,690 - ProductClient - INFO - 
+================================================================================
+-------------------------------- live log call ---------------------------------
+2025-12-29 18:24:19 [    INFO] 
+================================================================================
+2025-12-29 18:24:19,691 - ProductClient - INFO - REQUEST: POST http://127.0.0.1:8000/products
+2025-12-29 18:24:19 [    INFO] REQUEST: POST http://127.0.0.1:8000/products
+2025-12-29 18:24:19,691 - ProductClient - INFO - Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:19 [    INFO] Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:19,691 - ProductClient - INFO - Body: {
+  "name": "LimitedStock",
+  "price": 100.0,
+  "currency": "TRY",
+  "stock": 1,
+  "isActive": true
+}
+2025-12-29 18:24:19 [    INFO] Body: {
+  "name": "LimitedStock",
+  "price": 100.0,
+  "currency": "TRY",
+  "stock": 1,
+  "isActive": true
+}
+2025-12-29 18:24:19,692 - ProductClient - INFO - 
+RESPONSE: 201
+2025-12-29 18:24:19 [    INFO] 
+RESPONSE: 201
+2025-12-29 18:24:19,692 - ProductClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '124', 'content-type': 'application/json', 'x-request-id': 'c0b400f6-cd89-4ba4-8340-b78d6b7e55a8'}
+2025-12-29 18:24:19 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '124', 'content-type': 'application/json', 'x-request-id': 'c0b400f6-cd89-4ba4-8340-b78d6b7e55a8'}
+2025-12-29 18:24:19,692 - ProductClient - INFO - Body: {
+  "id": "eca05640-01fb-4dbf-b027-467c0220c3cf",
+  "name": "LimitedStock",
+  "price": 100.0,
+  "currency": "TRY",
+  "stock": 1,
+  "isActive": true
+}
+2025-12-29 18:24:19 [    INFO] Body: {
+  "id": "eca05640-01fb-4dbf-b027-467c0220c3cf",
+  "name": "LimitedStock",
+  "price": 100.0,
+  "currency": "TRY",
+  "stock": 1,
+  "isActive": true
+}
+2025-12-29 18:24:19,692 - ProductClient - INFO - ================================================================================
+
+2025-12-29 18:24:19 [    INFO] ================================================================================
+
+2025-12-29 18:24:19,693 - OrderClient - INFO - 
+================================================================================
+2025-12-29 18:24:19 [    INFO] 
+================================================================================
+2025-12-29 18:24:19,693 - OrderClient - INFO - REQUEST: POST http://127.0.0.1:8000/orders
+2025-12-29 18:24:19 [    INFO] REQUEST: POST http://127.0.0.1:8000/orders
+2025-12-29 18:24:19,693 - OrderClient - INFO - Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:19 [    INFO] Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:19,693 - OrderClient - INFO - Body: {
+  "items": [
+    {
+      "productId": "eca05640-01fb-4dbf-b027-467c0220c3cf",
+      "qty": 2
+    }
+  ]
+}
+2025-12-29 18:24:19 [    INFO] Body: {
+  "items": [
+    {
+      "productId": "eca05640-01fb-4dbf-b027-467c0220c3cf",
+      "qty": 2
+    }
+  ]
+}
+2025-12-29 18:24:19,694 - OrderClient - INFO - 
+RESPONSE: 409
+2025-12-29 18:24:19 [    INFO] 
+RESPONSE: 409
+2025-12-29 18:24:19,694 - OrderClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '203', 'content-type': 'application/json', 'x-request-id': '9aa35f71-d458-49d4-a70a-b05478550d9d'}
+2025-12-29 18:24:19 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '203', 'content-type': 'application/json', 'x-request-id': '9aa35f71-d458-49d4-a70a-b05478550d9d'}
+2025-12-29 18:24:19,694 - OrderClient - INFO - Body: {
+  "error": {
+    "code": "CONFLICT",
+    "message": "Insufficient stock for product eca05640-01fb-4dbf-b027-467c0220c3cf. Available: 1, Requested: 2",
+    "details": null
+  },
+  "requestId": "9aa35f71-d458-49d4-a70a-b05478550d9d"
+}
+2025-12-29 18:24:19 [    INFO] Body: {
+  "error": {
+    "code": "CONFLICT",
+    "message": "Insufficient stock for product eca05640-01fb-4dbf-b027-467c0220c3cf. Available: 1, Requested: 2",
+    "details": null
+  },
+  "requestId": "9aa35f71-d458-49d4-a70a-b05478550d9d"
+}
+2025-12-29 18:24:19,694 - OrderClient - INFO - ================================================================================
+
+2025-12-29 18:24:19 [    INFO] ================================================================================
+
+PASSED
+tests/test_orders.py::test_ord_18_below_min_cart_total_returns_422 2025-12-29 18:24:19,694 - AuthClient - INFO - 
+================================================================================
+
+-------------------------------- live log setup --------------------------------
+2025-12-29 18:24:19 [    INFO] 
+================================================================================
+2025-12-29 18:24:19,694 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:19 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:19,695 - AuthClient - INFO - Body: {
+  "email": "test_cc61dee2@example.com",
+  "password": "admin123",
+  "role": "admin"
+}
+2025-12-29 18:24:19 [    INFO] Body: {
+  "email": "test_cc61dee2@example.com",
+  "password": "admin123",
+  "role": "admin"
+}
+2025-12-29 18:24:19,911 - AuthClient - INFO - 
+RESPONSE: 201
+2025-12-29 18:24:19 [    INFO] 
+RESPONSE: 201
+2025-12-29 18:24:19,911 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '96', 'content-type': 'application/json', 'x-request-id': '3a4518ce-789c-408e-841b-5f9aa500dd88'}
+2025-12-29 18:24:19 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '96', 'content-type': 'application/json', 'x-request-id': '3a4518ce-789c-408e-841b-5f9aa500dd88'}
+2025-12-29 18:24:19,911 - AuthClient - INFO - Body: {
+  "id": "04f44356-b7d4-435a-850f-666363f4f72f",
+  "email": "test_cc61dee2@example.com",
+  "role": "admin"
+}
+2025-12-29 18:24:19 [    INFO] Body: {
+  "id": "04f44356-b7d4-435a-850f-666363f4f72f",
+  "email": "test_cc61dee2@example.com",
+  "role": "admin"
+}
+2025-12-29 18:24:19,911 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:19 [    INFO] ================================================================================
+
+2025-12-29 18:24:19,911 - AuthClient - INFO - 
+================================================================================
+2025-12-29 18:24:19 [    INFO] 
+================================================================================
+2025-12-29 18:24:19,911 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:19 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:19,911 - AuthClient - INFO - Body: {
+  "email": "test_cc61dee2@example.com",
+  "password": "admin123"
+}
+2025-12-29 18:24:19 [    INFO] Body: {
+  "email": "test_cc61dee2@example.com",
+  "password": "admin123"
+}
+2025-12-29 18:24:20,126 - AuthClient - INFO - 
+RESPONSE: 200
+2025-12-29 18:24:20 [    INFO] 
+RESPONSE: 200
+2025-12-29 18:24:20,126 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '241', 'content-type': 'application/json', 'x-request-id': 'c9b79a0e-d546-41fa-ac71-f80fa7703491'}
+2025-12-29 18:24:20 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '241', 'content-type': 'application/json', 'x-request-id': 'c9b79a0e-d546-41fa-ac71-f80fa7703491'}
+2025-12-29 18:24:20,126 - AuthClient - INFO - Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwNGY0NDM1Ni1iN2Q0LTQzNWEtODUwZi02NjYzNjNmNGY3MmYiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3NjcwMjU0NjB9.ecTL50F1_pA4-g_UipXnDYiVfQihVNMFPVHD0fCfgxw",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-29 18:24:20 [    INFO] Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwNGY0NDM1Ni1iN2Q0LTQzNWEtODUwZi02NjYzNjNmNGY3MmYiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3NjcwMjU0NjB9.ecTL50F1_pA4-g_UipXnDYiVfQihVNMFPVHD0fCfgxw",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-29 18:24:20,126 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:20 [    INFO] ================================================================================
+
+2025-12-29 18:24:20,126 - AuthClient - INFO - 
+================================================================================
+2025-12-29 18:24:20 [    INFO] 
+================================================================================
+2025-12-29 18:24:20,126 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:20 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:20,126 - AuthClient - INFO - Body: {
+  "email": "test_91cd2b3d@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:20 [    INFO] Body: {
+  "email": "test_91cd2b3d@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:20,342 - AuthClient - INFO - 
+RESPONSE: 201
+2025-12-29 18:24:20 [    INFO] 
+RESPONSE: 201
+2025-12-29 18:24:20,342 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': 'efe79e25-b23a-43f7-b536-494a920f3328'}
+2025-12-29 18:24:20 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': 'efe79e25-b23a-43f7-b536-494a920f3328'}
+2025-12-29 18:24:20,342 - AuthClient - INFO - Body: {
+  "id": "71e25202-186f-4b63-a1ae-6e78de171a15",
+  "email": "test_91cd2b3d@example.com",
+  "role": "customer"
+}
+2025-12-29 18:24:20 [    INFO] Body: {
+  "id": "71e25202-186f-4b63-a1ae-6e78de171a15",
+  "email": "test_91cd2b3d@example.com",
+  "role": "customer"
+}
+2025-12-29 18:24:20,342 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:20 [    INFO] ================================================================================
+
+2025-12-29 18:24:20,342 - AuthClient - INFO - 
+================================================================================
+2025-12-29 18:24:20 [    INFO] 
+================================================================================
+2025-12-29 18:24:20,342 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:20 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:20,342 - AuthClient - INFO - Body: {
+  "email": "test_91cd2b3d@example.com",
+  "password": "password123"
+}
+2025-12-29 18:24:20 [    INFO] Body: {
+  "email": "test_91cd2b3d@example.com",
+  "password": "password123"
+}
+2025-12-29 18:24:20,585 - AuthClient - INFO - 
+RESPONSE: 200
+2025-12-29 18:24:20 [    INFO] 
+RESPONSE: 200
+2025-12-29 18:24:20,585 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '245', 'content-type': 'application/json', 'x-request-id': '7acfbabf-430d-4fb6-8596-6081aefcbaad'}
+2025-12-29 18:24:20 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '245', 'content-type': 'application/json', 'x-request-id': '7acfbabf-430d-4fb6-8596-6081aefcbaad'}
+2025-12-29 18:24:20,585 - AuthClient - INFO - Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MWUyNTIwMi0xODZmLTRiNjMtYTFhZS02ZTc4ZGUxNzFhMTUiLCJyb2xlIjoiY3VzdG9tZXIiLCJleHAiOjE3NjcwMjU0NjB9.LyhXS6RlBWD6EQYPIUjmN0HRRC_c07UsW6jJGkegyhI",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-29 18:24:20 [    INFO] Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MWUyNTIwMi0xODZmLTRiNjMtYTFhZS02ZTc4ZGUxNzFhMTUiLCJyb2xlIjoiY3VzdG9tZXIiLCJleHAiOjE3NjcwMjU0NjB9.LyhXS6RlBWD6EQYPIUjmN0HRRC_c07UsW6jJGkegyhI",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-29 18:24:20,585 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:20 [    INFO] ================================================================================
+
+2025-12-29 18:24:20,585 - ProductClient - INFO - 
+================================================================================
+-------------------------------- live log call ---------------------------------
+2025-12-29 18:24:20 [    INFO] 
+================================================================================
+2025-12-29 18:24:20,586 - ProductClient - INFO - REQUEST: POST http://127.0.0.1:8000/products
+2025-12-29 18:24:20 [    INFO] REQUEST: POST http://127.0.0.1:8000/products
+2025-12-29 18:24:20,586 - ProductClient - INFO - Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:20 [    INFO] Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:20,586 - ProductClient - INFO - Body: {
+  "name": "TooCheap",
+  "price": 10.0,
+  "currency": "TRY",
+  "stock": 10,
+  "isActive": true
+}
+2025-12-29 18:24:20 [    INFO] Body: {
+  "name": "TooCheap",
+  "price": 10.0,
+  "currency": "TRY",
+  "stock": 10,
+  "isActive": true
+}
+2025-12-29 18:24:20,589 - ProductClient - INFO - 
+RESPONSE: 201
+2025-12-29 18:24:20 [    INFO] 
+RESPONSE: 201
+2025-12-29 18:24:20,589 - ProductClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '120', 'content-type': 'application/json', 'x-request-id': '9fe7391b-6b7c-4329-9f10-353cf26e7629'}
+2025-12-29 18:24:20 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '120', 'content-type': 'application/json', 'x-request-id': '9fe7391b-6b7c-4329-9f10-353cf26e7629'}
+2025-12-29 18:24:20,589 - ProductClient - INFO - Body: {
+  "id": "eca77252-a4be-4fb7-ae50-dd345bdce6a5",
+  "name": "TooCheap",
+  "price": 10.0,
+  "currency": "TRY",
+  "stock": 10,
+  "isActive": true
+}
+2025-12-29 18:24:20 [    INFO] Body: {
+  "id": "eca77252-a4be-4fb7-ae50-dd345bdce6a5",
+  "name": "TooCheap",
+  "price": 10.0,
+  "currency": "TRY",
+  "stock": 10,
+  "isActive": true
+}
+2025-12-29 18:24:20,590 - ProductClient - INFO - ================================================================================
+
+2025-12-29 18:24:20 [    INFO] ================================================================================
+
+2025-12-29 18:24:20,590 - OrderClient - INFO - 
+================================================================================
+2025-12-29 18:24:20 [    INFO] 
+================================================================================
+2025-12-29 18:24:20,590 - OrderClient - INFO - REQUEST: POST http://127.0.0.1:8000/orders
+2025-12-29 18:24:20 [    INFO] REQUEST: POST http://127.0.0.1:8000/orders
+2025-12-29 18:24:20,590 - OrderClient - INFO - Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:20 [    INFO] Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:20,590 - OrderClient - INFO - Body: {
+  "items": [
+    {
+      "productId": "eca77252-a4be-4fb7-ae50-dd345bdce6a5",
+      "qty": 1
+    }
+  ]
+}
+2025-12-29 18:24:20 [    INFO] Body: {
+  "items": [
+    {
+      "productId": "eca77252-a4be-4fb7-ae50-dd345bdce6a5",
+      "qty": 1
+    }
+  ]
+}
+2025-12-29 18:24:20,591 - OrderClient - INFO - 
+RESPONSE: 422
+2025-12-29 18:24:20 [    INFO] 
+RESPONSE: 422
+2025-12-29 18:24:20,591 - OrderClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '167', 'content-type': 'application/json', 'x-request-id': '91c95ef6-39d9-4800-80e9-6c60eaf3e5d8'}
+2025-12-29 18:24:20 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '167', 'content-type': 'application/json', 'x-request-id': '91c95ef6-39d9-4800-80e9-6c60eaf3e5d8'}
+2025-12-29 18:24:20,591 - OrderClient - INFO - Body: {
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Cart total must be at least 50.0 TRY. Current: 10.0",
+    "details": null
+  },
+  "requestId": "91c95ef6-39d9-4800-80e9-6c60eaf3e5d8"
+}
+2025-12-29 18:24:20 [    INFO] Body: {
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Cart total must be at least 50.0 TRY. Current: 10.0",
+    "details": null
+  },
+  "requestId": "91c95ef6-39d9-4800-80e9-6c60eaf3e5d8"
+}
+2025-12-29 18:24:20,591 - OrderClient - INFO - ================================================================================
+
+2025-12-29 18:24:20 [    INFO] ================================================================================
+
+PASSED
+tests/test_payments.py::test_pay_02_create_payment_success 2025-12-29 18:24:20,592 - AuthClient - INFO - 
+================================================================================
+
+-------------------------------- live log setup --------------------------------
+2025-12-29 18:24:20 [    INFO] 
+================================================================================
+2025-12-29 18:24:20,592 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:20 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:20,592 - AuthClient - INFO - Body: {
+  "email": "test_d649b7fd@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:20 [    INFO] Body: {
+  "email": "test_d649b7fd@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:20,814 - AuthClient - INFO - 
+RESPONSE: 201
+2025-12-29 18:24:20 [    INFO] 
+RESPONSE: 201
+2025-12-29 18:24:20,814 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': '78ca6957-df67-4d95-9475-f3795bdd68a5'}
+2025-12-29 18:24:20 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': '78ca6957-df67-4d95-9475-f3795bdd68a5'}
+2025-12-29 18:24:20,814 - AuthClient - INFO - Body: {
+  "id": "bde26572-97ef-49c9-b866-c10eaa9ffa0f",
+  "email": "test_d649b7fd@example.com",
+  "role": "customer"
+}
+2025-12-29 18:24:20 [    INFO] Body: {
+  "id": "bde26572-97ef-49c9-b866-c10eaa9ffa0f",
+  "email": "test_d649b7fd@example.com",
+  "role": "customer"
+}
+2025-12-29 18:24:20,814 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:20 [    INFO] ================================================================================
+
+2025-12-29 18:24:20,814 - AuthClient - INFO - 
+================================================================================
+2025-12-29 18:24:20 [    INFO] 
+================================================================================
+2025-12-29 18:24:20,814 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:20 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:20,814 - AuthClient - INFO - Body: {
+  "email": "test_d649b7fd@example.com",
+  "password": "password123"
+}
+2025-12-29 18:24:20 [    INFO] Body: {
+  "email": "test_d649b7fd@example.com",
+  "password": "password123"
+}
+2025-12-29 18:24:21,040 - AuthClient - INFO - 
+RESPONSE: 200
+2025-12-29 18:24:21 [    INFO] 
+RESPONSE: 200
+2025-12-29 18:24:21,041 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '245', 'content-type': 'application/json', 'x-request-id': 'c582a8ea-7727-49d5-9a35-4bedb49acd8d'}
+2025-12-29 18:24:21 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '245', 'content-type': 'application/json', 'x-request-id': 'c582a8ea-7727-49d5-9a35-4bedb49acd8d'}
+2025-12-29 18:24:21,041 - AuthClient - INFO - Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiZGUyNjU3Mi05N2VmLTQ5YzktYjg2Ni1jMTBlYWE5ZmZhMGYiLCJyb2xlIjoiY3VzdG9tZXIiLCJleHAiOjE3NjcwMjU0NjF9.RuzfnSS2ARL6LbSnYd9BJDRjkfSvs5uuoxzNIgc1Q3k",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-29 18:24:21 [    INFO] Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiZGUyNjU3Mi05N2VmLTQ5YzktYjg2Ni1jMTBlYWE5ZmZhMGYiLCJyb2xlIjoiY3VzdG9tZXIiLCJleHAiOjE3NjcwMjU0NjF9.RuzfnSS2ARL6LbSnYd9BJDRjkfSvs5uuoxzNIgc1Q3k",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-29 18:24:21,041 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:21 [    INFO] ================================================================================
+
+2025-12-29 18:24:21,041 - ProductClient - INFO - 
+================================================================================
+-------------------------------- live log call ---------------------------------
+2025-12-29 18:24:21 [    INFO] 
+================================================================================
+2025-12-29 18:24:21,041 - ProductClient - INFO - REQUEST: GET http://127.0.0.1:8000/products
+2025-12-29 18:24:21 [    INFO] REQUEST: GET http://127.0.0.1:8000/products
+2025-12-29 18:24:21,042 - ProductClient - INFO - 
+RESPONSE: 200
+2025-12-29 18:24:21 [    INFO] 
+RESPONSE: 200
+2025-12-29 18:24:21,042 - ProductClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '1468', 'content-type': 'application/json', 'x-request-id': '52bc86e0-734c-4e94-982a-29fe26cac88c'}
+2025-12-29 18:24:21 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '1468', 'content-type': 'application/json', 'x-request-id': '52bc86e0-734c-4e94-982a-29fe26cac88c'}
+2025-12-29 18:24:21,042 - ProductClient - INFO - Body: [
+  {
+    "id": "53b57ad8-08fd-4038-a041-be3913eb614d",
+    "name": "Laptop",
+    "price": 15000.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8171d131-f967-424d-8b1b-1c26a21d197c",
+    "name": "Mouse",
+    "price": 150.0,
+    "currency": "TRY",
+    "stock": 44,
+    "isActive": true
+  },
+  {
+    "id": "11ea8333-2cd3-41f4-9c32-d0e5889f2259",
+    "name": "Keyboard",
+    "price": 500.0,
+    "currency": "TRY",
+    "stock": 30,
+    "isActive": true
+  },
+  {
+    "id": "10337be6-7142-4785-9a71-2f90189cf8b1",
+    "name": "Monitor",
+    "price": 3000.0,
+    "currency": "TRY",
+    "stock": 20,
+    "isActive": true
+  },
+  {
+    "id": "1cc45a67-8f8e-463c-8ae2-3c44a687a835",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "3cb49d6e-37ec-4889-b6f8-afef4502dcd9",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "6d8acf5c-8feb-4a4d-a990-870dd17ea5ca",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8e344fe2-2d8c-4092-8042-30187a36141d",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "2f8ad827-e093-497e-a860-c50a1244116b",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "778bb1ad-e4f8-40fe-b61d-9e0a39a88fa5",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "eca05640-01fb-4dbf-b027-467c0220c3cf",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "eca77252-a4be-4fb7-ae50-dd345bdce6a5",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  }
+]
+2025-12-29 18:24:21 [    INFO] Body: [
+  {
+    "id": "53b57ad8-08fd-4038-a041-be3913eb614d",
+    "name": "Laptop",
+    "price": 15000.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8171d131-f967-424d-8b1b-1c26a21d197c",
+    "name": "Mouse",
+    "price": 150.0,
+    "currency": "TRY",
+    "stock": 44,
+    "isActive": true
+  },
+  {
+    "id": "11ea8333-2cd3-41f4-9c32-d0e5889f2259",
+    "name": "Keyboard",
+    "price": 500.0,
+    "currency": "TRY",
+    "stock": 30,
+    "isActive": true
+  },
+  {
+    "id": "10337be6-7142-4785-9a71-2f90189cf8b1",
+    "name": "Monitor",
+    "price": 3000.0,
+    "currency": "TRY",
+    "stock": 20,
+    "isActive": true
+  },
+  {
+    "id": "1cc45a67-8f8e-463c-8ae2-3c44a687a835",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "3cb49d6e-37ec-4889-b6f8-afef4502dcd9",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "6d8acf5c-8feb-4a4d-a990-870dd17ea5ca",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8e344fe2-2d8c-4092-8042-30187a36141d",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "2f8ad827-e093-497e-a860-c50a1244116b",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "778bb1ad-e4f8-40fe-b61d-9e0a39a88fa5",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "eca05640-01fb-4dbf-b027-467c0220c3cf",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "eca77252-a4be-4fb7-ae50-dd345bdce6a5",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  }
+]
+2025-12-29 18:24:21,042 - ProductClient - INFO - ================================================================================
+
+2025-12-29 18:24:21 [    INFO] ================================================================================
+
+2025-12-29 18:24:21,042 - OrderClient - INFO - 
+================================================================================
+2025-12-29 18:24:21 [    INFO] 
+================================================================================
+2025-12-29 18:24:21,042 - OrderClient - INFO - REQUEST: POST http://127.0.0.1:8000/orders
+2025-12-29 18:24:21 [    INFO] REQUEST: POST http://127.0.0.1:8000/orders
+2025-12-29 18:24:21,042 - OrderClient - INFO - Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:21 [    INFO] Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:21,042 - OrderClient - INFO - Body: {
+  "items": [
+    {
+      "productId": "53b57ad8-08fd-4038-a041-be3913eb614d",
+      "qty": 1
+    }
+  ]
+}
+2025-12-29 18:24:21 [    INFO] Body: {
+  "items": [
+    {
+      "productId": "53b57ad8-08fd-4038-a041-be3913eb614d",
+      "qty": 1
+    }
+  ]
+}
+2025-12-29 18:24:21,044 - OrderClient - INFO - 
+RESPONSE: 422
+2025-12-29 18:24:21 [    INFO] 
+RESPONSE: 422
+2025-12-29 18:24:21,044 - OrderClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '169', 'content-type': 'application/json', 'x-request-id': 'bf251e4a-ad39-49b6-a517-af6aaa8793a9'}
+2025-12-29 18:24:21 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '169', 'content-type': 'application/json', 'x-request-id': 'bf251e4a-ad39-49b6-a517-af6aaa8793a9'}
+2025-12-29 18:24:21,044 - OrderClient - INFO - Body: {
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Cart total cannot exceed 5000.0 TRY. Current: 15000.0",
+    "details": null
+  },
+  "requestId": "bf251e4a-ad39-49b6-a517-af6aaa8793a9"
+}
+2025-12-29 18:24:21 [    INFO] Body: {
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Cart total cannot exceed 5000.0 TRY. Current: 15000.0",
+    "details": null
+  },
+  "requestId": "bf251e4a-ad39-49b6-a517-af6aaa8793a9"
+}
+2025-12-29 18:24:21,044 - OrderClient - INFO - ================================================================================
+
+2025-12-29 18:24:21 [    INFO] ================================================================================
+
+FAILED
+tests/test_payments.py::test_pay_07_payment_for_other_users_order_forbidden 2025-12-29 18:24:21,056 - AuthClient - INFO - 
+================================================================================
+
+-------------------------------- live log setup --------------------------------
+2025-12-29 18:24:21 [    INFO] 
+================================================================================
+2025-12-29 18:24:21,056 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:21 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:21,056 - AuthClient - INFO - Body: {
+  "email": "test_77d29d11@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:21 [    INFO] Body: {
+  "email": "test_77d29d11@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:21,274 - AuthClient - INFO - 
+RESPONSE: 201
+2025-12-29 18:24:21 [    INFO] 
+RESPONSE: 201
+2025-12-29 18:24:21,274 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': '61241d80-ad0f-4b1f-8b95-007af20cb5f3'}
+2025-12-29 18:24:21 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': '61241d80-ad0f-4b1f-8b95-007af20cb5f3'}
+2025-12-29 18:24:21,274 - AuthClient - INFO - Body: {
+  "id": "481a672f-b826-4121-ad6d-21a68b89551a",
+  "email": "test_77d29d11@example.com",
+  "role": "customer"
+}
+2025-12-29 18:24:21 [    INFO] Body: {
+  "id": "481a672f-b826-4121-ad6d-21a68b89551a",
+  "email": "test_77d29d11@example.com",
+  "role": "customer"
+}
+2025-12-29 18:24:21,274 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:21 [    INFO] ================================================================================
+
+2025-12-29 18:24:21,274 - AuthClient - INFO - 
+================================================================================
+2025-12-29 18:24:21 [    INFO] 
+================================================================================
+2025-12-29 18:24:21,274 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:21 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:21,274 - AuthClient - INFO - Body: {
+  "email": "test_77d29d11@example.com",
+  "password": "password123"
+}
+2025-12-29 18:24:21 [    INFO] Body: {
+  "email": "test_77d29d11@example.com",
+  "password": "password123"
+}
+2025-12-29 18:24:21,498 - AuthClient - INFO - 
+RESPONSE: 200
+2025-12-29 18:24:21 [    INFO] 
+RESPONSE: 200
+2025-12-29 18:24:21,498 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '245', 'content-type': 'application/json', 'x-request-id': '51e13619-4911-4204-b54b-37d6b37ac671'}
+2025-12-29 18:24:21 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '245', 'content-type': 'application/json', 'x-request-id': '51e13619-4911-4204-b54b-37d6b37ac671'}
+2025-12-29 18:24:21,499 - AuthClient - INFO - Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0ODFhNjcyZi1iODI2LTQxMjEtYWQ2ZC0yMWE2OGI4OTU1MWEiLCJyb2xlIjoiY3VzdG9tZXIiLCJleHAiOjE3NjcwMjU0NjF9.eoYRG2NuaMrA7WDIU5s3EaxBSEX5X7T-RgqXskRChWQ",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-29 18:24:21 [    INFO] Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0ODFhNjcyZi1iODI2LTQxMjEtYWQ2ZC0yMWE2OGI4OTU1MWEiLCJyb2xlIjoiY3VzdG9tZXIiLCJleHAiOjE3NjcwMjU0NjF9.eoYRG2NuaMrA7WDIU5s3EaxBSEX5X7T-RgqXskRChWQ",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-29 18:24:21,499 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:21 [    INFO] ================================================================================
+
+2025-12-29 18:24:21,499 - ProductClient - INFO - 
+================================================================================
+-------------------------------- live log call ---------------------------------
+2025-12-29 18:24:21 [    INFO] 
+================================================================================
+2025-12-29 18:24:21,499 - ProductClient - INFO - REQUEST: GET http://127.0.0.1:8000/products
+2025-12-29 18:24:21 [    INFO] REQUEST: GET http://127.0.0.1:8000/products
+2025-12-29 18:24:21,500 - ProductClient - INFO - 
+RESPONSE: 200
+2025-12-29 18:24:21 [    INFO] 
+RESPONSE: 200
+2025-12-29 18:24:21,500 - ProductClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '1468', 'content-type': 'application/json', 'x-request-id': '98a19888-e3d9-4556-bbe4-48af8aee60ee'}
+2025-12-29 18:24:21 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '1468', 'content-type': 'application/json', 'x-request-id': '98a19888-e3d9-4556-bbe4-48af8aee60ee'}
+2025-12-29 18:24:21,500 - ProductClient - INFO - Body: [
+  {
+    "id": "53b57ad8-08fd-4038-a041-be3913eb614d",
+    "name": "Laptop",
+    "price": 15000.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8171d131-f967-424d-8b1b-1c26a21d197c",
+    "name": "Mouse",
+    "price": 150.0,
+    "currency": "TRY",
+    "stock": 44,
+    "isActive": true
+  },
+  {
+    "id": "11ea8333-2cd3-41f4-9c32-d0e5889f2259",
+    "name": "Keyboard",
+    "price": 500.0,
+    "currency": "TRY",
+    "stock": 30,
+    "isActive": true
+  },
+  {
+    "id": "10337be6-7142-4785-9a71-2f90189cf8b1",
+    "name": "Monitor",
+    "price": 3000.0,
+    "currency": "TRY",
+    "stock": 20,
+    "isActive": true
+  },
+  {
+    "id": "1cc45a67-8f8e-463c-8ae2-3c44a687a835",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "3cb49d6e-37ec-4889-b6f8-afef4502dcd9",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "6d8acf5c-8feb-4a4d-a990-870dd17ea5ca",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8e344fe2-2d8c-4092-8042-30187a36141d",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "2f8ad827-e093-497e-a860-c50a1244116b",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "778bb1ad-e4f8-40fe-b61d-9e0a39a88fa5",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "eca05640-01fb-4dbf-b027-467c0220c3cf",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "eca77252-a4be-4fb7-ae50-dd345bdce6a5",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  }
+]
+2025-12-29 18:24:21 [    INFO] Body: [
+  {
+    "id": "53b57ad8-08fd-4038-a041-be3913eb614d",
+    "name": "Laptop",
+    "price": 15000.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8171d131-f967-424d-8b1b-1c26a21d197c",
+    "name": "Mouse",
+    "price": 150.0,
+    "currency": "TRY",
+    "stock": 44,
+    "isActive": true
+  },
+  {
+    "id": "11ea8333-2cd3-41f4-9c32-d0e5889f2259",
+    "name": "Keyboard",
+    "price": 500.0,
+    "currency": "TRY",
+    "stock": 30,
+    "isActive": true
+  },
+  {
+    "id": "10337be6-7142-4785-9a71-2f90189cf8b1",
+    "name": "Monitor",
+    "price": 3000.0,
+    "currency": "TRY",
+    "stock": 20,
+    "isActive": true
+  },
+  {
+    "id": "1cc45a67-8f8e-463c-8ae2-3c44a687a835",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "3cb49d6e-37ec-4889-b6f8-afef4502dcd9",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "6d8acf5c-8feb-4a4d-a990-870dd17ea5ca",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8e344fe2-2d8c-4092-8042-30187a36141d",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "2f8ad827-e093-497e-a860-c50a1244116b",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "778bb1ad-e4f8-40fe-b61d-9e0a39a88fa5",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "eca05640-01fb-4dbf-b027-467c0220c3cf",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "eca77252-a4be-4fb7-ae50-dd345bdce6a5",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  }
+]
+2025-12-29 18:24:21,500 - ProductClient - INFO - ================================================================================
+
+2025-12-29 18:24:21 [    INFO] ================================================================================
+
+2025-12-29 18:24:21,500 - OrderClient - INFO - 
+================================================================================
+2025-12-29 18:24:21 [    INFO] 
+================================================================================
+2025-12-29 18:24:21,500 - OrderClient - INFO - REQUEST: POST http://127.0.0.1:8000/orders
+2025-12-29 18:24:21 [    INFO] REQUEST: POST http://127.0.0.1:8000/orders
+2025-12-29 18:24:21,500 - OrderClient - INFO - Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:21 [    INFO] Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:21,500 - OrderClient - INFO - Body: {
+  "items": [
+    {
+      "productId": "53b57ad8-08fd-4038-a041-be3913eb614d",
+      "qty": 1
+    }
+  ]
+}
+2025-12-29 18:24:21 [    INFO] Body: {
+  "items": [
+    {
+      "productId": "53b57ad8-08fd-4038-a041-be3913eb614d",
+      "qty": 1
+    }
+  ]
+}
+2025-12-29 18:24:21,502 - OrderClient - INFO - 
+RESPONSE: 422
+2025-12-29 18:24:21 [    INFO] 
+RESPONSE: 422
+2025-12-29 18:24:21,502 - OrderClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '169', 'content-type': 'application/json', 'x-request-id': 'fb537437-ade8-4589-9d99-c86871bd81bf'}
+2025-12-29 18:24:21 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '169', 'content-type': 'application/json', 'x-request-id': 'fb537437-ade8-4589-9d99-c86871bd81bf'}
+2025-12-29 18:24:21,502 - OrderClient - INFO - Body: {
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Cart total cannot exceed 5000.0 TRY. Current: 15000.0",
+    "details": null
+  },
+  "requestId": "fb537437-ade8-4589-9d99-c86871bd81bf"
+}
+2025-12-29 18:24:21 [    INFO] Body: {
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Cart total cannot exceed 5000.0 TRY. Current: 15000.0",
+    "details": null
+  },
+  "requestId": "fb537437-ade8-4589-9d99-c86871bd81bf"
+}
+2025-12-29 18:24:21,502 - OrderClient - INFO - ================================================================================
+
+2025-12-29 18:24:21 [    INFO] ================================================================================
+
+FAILED
+tests/test_products.py::test_prod_01_list_products 2025-12-29 18:24:21,504 - ProductClient - INFO - 
+================================================================================
+
+-------------------------------- live log call ---------------------------------
+2025-12-29 18:24:21 [    INFO] 
+================================================================================
+2025-12-29 18:24:21,504 - ProductClient - INFO - REQUEST: GET http://127.0.0.1:8000/products
+2025-12-29 18:24:21 [    INFO] REQUEST: GET http://127.0.0.1:8000/products
+2025-12-29 18:24:21,505 - ProductClient - INFO - 
+RESPONSE: 200
+2025-12-29 18:24:21 [    INFO] 
+RESPONSE: 200
+2025-12-29 18:24:21,505 - ProductClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '1468', 'content-type': 'application/json', 'x-request-id': 'ffb46d2d-01d9-475d-b8b9-0dd4dda86adf'}
+2025-12-29 18:24:21 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '1468', 'content-type': 'application/json', 'x-request-id': 'ffb46d2d-01d9-475d-b8b9-0dd4dda86adf'}
+2025-12-29 18:24:21,505 - ProductClient - INFO - Body: [
+  {
+    "id": "53b57ad8-08fd-4038-a041-be3913eb614d",
+    "name": "Laptop",
+    "price": 15000.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8171d131-f967-424d-8b1b-1c26a21d197c",
+    "name": "Mouse",
+    "price": 150.0,
+    "currency": "TRY",
+    "stock": 44,
+    "isActive": true
+  },
+  {
+    "id": "11ea8333-2cd3-41f4-9c32-d0e5889f2259",
+    "name": "Keyboard",
+    "price": 500.0,
+    "currency": "TRY",
+    "stock": 30,
+    "isActive": true
+  },
+  {
+    "id": "10337be6-7142-4785-9a71-2f90189cf8b1",
+    "name": "Monitor",
+    "price": 3000.0,
+    "currency": "TRY",
+    "stock": 20,
+    "isActive": true
+  },
+  {
+    "id": "1cc45a67-8f8e-463c-8ae2-3c44a687a835",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "3cb49d6e-37ec-4889-b6f8-afef4502dcd9",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "6d8acf5c-8feb-4a4d-a990-870dd17ea5ca",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8e344fe2-2d8c-4092-8042-30187a36141d",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "2f8ad827-e093-497e-a860-c50a1244116b",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "778bb1ad-e4f8-40fe-b61d-9e0a39a88fa5",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "eca05640-01fb-4dbf-b027-467c0220c3cf",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "eca77252-a4be-4fb7-ae50-dd345bdce6a5",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  }
+]
+2025-12-29 18:24:21 [    INFO] Body: [
+  {
+    "id": "53b57ad8-08fd-4038-a041-be3913eb614d",
+    "name": "Laptop",
+    "price": 15000.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8171d131-f967-424d-8b1b-1c26a21d197c",
+    "name": "Mouse",
+    "price": 150.0,
+    "currency": "TRY",
+    "stock": 44,
+    "isActive": true
+  },
+  {
+    "id": "11ea8333-2cd3-41f4-9c32-d0e5889f2259",
+    "name": "Keyboard",
+    "price": 500.0,
+    "currency": "TRY",
+    "stock": 30,
+    "isActive": true
+  },
+  {
+    "id": "10337be6-7142-4785-9a71-2f90189cf8b1",
+    "name": "Monitor",
+    "price": 3000.0,
+    "currency": "TRY",
+    "stock": 20,
+    "isActive": true
+  },
+  {
+    "id": "1cc45a67-8f8e-463c-8ae2-3c44a687a835",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "3cb49d6e-37ec-4889-b6f8-afef4502dcd9",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "6d8acf5c-8feb-4a4d-a990-870dd17ea5ca",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8e344fe2-2d8c-4092-8042-30187a36141d",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "2f8ad827-e093-497e-a860-c50a1244116b",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "778bb1ad-e4f8-40fe-b61d-9e0a39a88fa5",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "eca05640-01fb-4dbf-b027-467c0220c3cf",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "eca77252-a4be-4fb7-ae50-dd345bdce6a5",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  }
+]
+2025-12-29 18:24:21,505 - ProductClient - INFO - ================================================================================
+
+2025-12-29 18:24:21 [    INFO] ================================================================================
+
+PASSED
+tests/test_products.py::test_prod_02_get_product_by_id 2025-12-29 18:24:21,505 - ProductClient - INFO - 
+================================================================================
+
+-------------------------------- live log call ---------------------------------
+2025-12-29 18:24:21 [    INFO] 
+================================================================================
+2025-12-29 18:24:21,505 - ProductClient - INFO - REQUEST: GET http://127.0.0.1:8000/products
+2025-12-29 18:24:21 [    INFO] REQUEST: GET http://127.0.0.1:8000/products
+2025-12-29 18:24:21,506 - ProductClient - INFO - 
+RESPONSE: 200
+2025-12-29 18:24:21 [    INFO] 
+RESPONSE: 200
+2025-12-29 18:24:21,506 - ProductClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '1468', 'content-type': 'application/json', 'x-request-id': 'a175db54-518c-4bd0-b7ee-b9e94c363152'}
+2025-12-29 18:24:21 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '1468', 'content-type': 'application/json', 'x-request-id': 'a175db54-518c-4bd0-b7ee-b9e94c363152'}
+2025-12-29 18:24:21,506 - ProductClient - INFO - Body: [
+  {
+    "id": "53b57ad8-08fd-4038-a041-be3913eb614d",
+    "name": "Laptop",
+    "price": 15000.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8171d131-f967-424d-8b1b-1c26a21d197c",
+    "name": "Mouse",
+    "price": 150.0,
+    "currency": "TRY",
+    "stock": 44,
+    "isActive": true
+  },
+  {
+    "id": "11ea8333-2cd3-41f4-9c32-d0e5889f2259",
+    "name": "Keyboard",
+    "price": 500.0,
+    "currency": "TRY",
+    "stock": 30,
+    "isActive": true
+  },
+  {
+    "id": "10337be6-7142-4785-9a71-2f90189cf8b1",
+    "name": "Monitor",
+    "price": 3000.0,
+    "currency": "TRY",
+    "stock": 20,
+    "isActive": true
+  },
+  {
+    "id": "1cc45a67-8f8e-463c-8ae2-3c44a687a835",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "3cb49d6e-37ec-4889-b6f8-afef4502dcd9",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "6d8acf5c-8feb-4a4d-a990-870dd17ea5ca",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8e344fe2-2d8c-4092-8042-30187a36141d",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "2f8ad827-e093-497e-a860-c50a1244116b",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "778bb1ad-e4f8-40fe-b61d-9e0a39a88fa5",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "eca05640-01fb-4dbf-b027-467c0220c3cf",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "eca77252-a4be-4fb7-ae50-dd345bdce6a5",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  }
+]
+2025-12-29 18:24:21 [    INFO] Body: [
+  {
+    "id": "53b57ad8-08fd-4038-a041-be3913eb614d",
+    "name": "Laptop",
+    "price": 15000.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8171d131-f967-424d-8b1b-1c26a21d197c",
+    "name": "Mouse",
+    "price": 150.0,
+    "currency": "TRY",
+    "stock": 44,
+    "isActive": true
+  },
+  {
+    "id": "11ea8333-2cd3-41f4-9c32-d0e5889f2259",
+    "name": "Keyboard",
+    "price": 500.0,
+    "currency": "TRY",
+    "stock": 30,
+    "isActive": true
+  },
+  {
+    "id": "10337be6-7142-4785-9a71-2f90189cf8b1",
+    "name": "Monitor",
+    "price": 3000.0,
+    "currency": "TRY",
+    "stock": 20,
+    "isActive": true
+  },
+  {
+    "id": "1cc45a67-8f8e-463c-8ae2-3c44a687a835",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "3cb49d6e-37ec-4889-b6f8-afef4502dcd9",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "6d8acf5c-8feb-4a4d-a990-870dd17ea5ca",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8e344fe2-2d8c-4092-8042-30187a36141d",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "2f8ad827-e093-497e-a860-c50a1244116b",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "778bb1ad-e4f8-40fe-b61d-9e0a39a88fa5",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "eca05640-01fb-4dbf-b027-467c0220c3cf",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "eca77252-a4be-4fb7-ae50-dd345bdce6a5",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  }
+]
+2025-12-29 18:24:21,506 - ProductClient - INFO - ================================================================================
+
+2025-12-29 18:24:21 [    INFO] ================================================================================
+
+2025-12-29 18:24:21,506 - ProductClient - INFO - 
+================================================================================
+2025-12-29 18:24:21 [    INFO] 
+================================================================================
+2025-12-29 18:24:21,506 - ProductClient - INFO - REQUEST: GET http://127.0.0.1:8000/products/53b57ad8-08fd-4038-a041-be3913eb614d
+2025-12-29 18:24:21 [    INFO] REQUEST: GET http://127.0.0.1:8000/products/53b57ad8-08fd-4038-a041-be3913eb614d
+2025-12-29 18:24:21,507 - ProductClient - INFO - 
+RESPONSE: 200
+2025-12-29 18:24:21 [    INFO] 
+RESPONSE: 200
+2025-12-29 18:24:21,507 - ProductClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '121', 'content-type': 'application/json', 'x-request-id': '97b7d362-376c-4dca-8d2e-82d766cd56d2'}
+2025-12-29 18:24:21 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '121', 'content-type': 'application/json', 'x-request-id': '97b7d362-376c-4dca-8d2e-82d766cd56d2'}
+2025-12-29 18:24:21,507 - ProductClient - INFO - Body: {
+  "id": "53b57ad8-08fd-4038-a041-be3913eb614d",
+  "name": "Laptop",
+  "price": 15000.0,
+  "currency": "TRY",
+  "stock": 10,
+  "isActive": true
+}
+2025-12-29 18:24:21 [    INFO] Body: {
+  "id": "53b57ad8-08fd-4038-a041-be3913eb614d",
+  "name": "Laptop",
+  "price": 15000.0,
+  "currency": "TRY",
+  "stock": 10,
+  "isActive": true
+}
+2025-12-29 18:24:21,507 - ProductClient - INFO - ================================================================================
+
+2025-12-29 18:24:21 [    INFO] ================================================================================
+
+PASSED
+tests/test_products.py::test_prod_04_get_missing_product_returns_404 2025-12-29 18:24:21,508 - ProductClient - INFO - 
+================================================================================
+
+-------------------------------- live log call ---------------------------------
+2025-12-29 18:24:21 [    INFO] 
+================================================================================
+2025-12-29 18:24:21,508 - ProductClient - INFO - REQUEST: GET http://127.0.0.1:8000/products/does-not-exist
+2025-12-29 18:24:21 [    INFO] REQUEST: GET http://127.0.0.1:8000/products/does-not-exist
+2025-12-29 18:24:21,508 - ProductClient - INFO - 
+RESPONSE: 404
+2025-12-29 18:24:21 [    INFO] 
+RESPONSE: 404
+2025-12-29 18:24:21,508 - ProductClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '141', 'content-type': 'application/json', 'x-request-id': '9811924d-1b3f-47e1-901f-0bae16c57a36'}
+2025-12-29 18:24:21 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '141', 'content-type': 'application/json', 'x-request-id': '9811924d-1b3f-47e1-901f-0bae16c57a36'}
+2025-12-29 18:24:21,508 - ProductClient - INFO - Body: {
+  "error": {
+    "code": "NOT_FOUND",
+    "message": "Product does-not-exist not found",
+    "details": null
+  },
+  "requestId": "9811924d-1b3f-47e1-901f-0bae16c57a36"
+}
+2025-12-29 18:24:21 [    INFO] Body: {
+  "error": {
+    "code": "NOT_FOUND",
+    "message": "Product does-not-exist not found",
+    "details": null
+  },
+  "requestId": "9811924d-1b3f-47e1-901f-0bae16c57a36"
+}
+2025-12-29 18:24:21,508 - ProductClient - INFO - ================================================================================
+
+2025-12-29 18:24:21 [    INFO] ================================================================================
+
+PASSED
+tests/test_products.py::test_prod_03_create_product_admin_only 2025-12-29 18:24:21,509 - AuthClient - INFO - 
+================================================================================
+
+-------------------------------- live log setup --------------------------------
+2025-12-29 18:24:21 [    INFO] 
+================================================================================
+2025-12-29 18:24:21,509 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:21 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:21,509 - AuthClient - INFO - Body: {
+  "email": "test_ef6a74ea@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:21 [    INFO] Body: {
+  "email": "test_ef6a74ea@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:21,726 - AuthClient - INFO - 
+RESPONSE: 201
+2025-12-29 18:24:21 [    INFO] 
+RESPONSE: 201
+2025-12-29 18:24:21,726 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': '7474f37e-a37d-4036-a18c-6b9b5ff29e30'}
+2025-12-29 18:24:21 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': '7474f37e-a37d-4036-a18c-6b9b5ff29e30'}
+2025-12-29 18:24:21,726 - AuthClient - INFO - Body: {
+  "id": "02d31ffb-eccb-497a-805f-a426ebce636d",
+  "email": "test_ef6a74ea@example.com",
+  "role": "customer"
+}
+2025-12-29 18:24:21 [    INFO] Body: {
+  "id": "02d31ffb-eccb-497a-805f-a426ebce636d",
+  "email": "test_ef6a74ea@example.com",
+  "role": "customer"
+}
+2025-12-29 18:24:21,726 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:21 [    INFO] ================================================================================
+
+2025-12-29 18:24:21,726 - AuthClient - INFO - 
+================================================================================
+2025-12-29 18:24:21 [    INFO] 
+================================================================================
+2025-12-29 18:24:21,726 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:21 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:21,727 - AuthClient - INFO - Body: {
+  "email": "test_ef6a74ea@example.com",
+  "password": "password123"
+}
+2025-12-29 18:24:21 [    INFO] Body: {
+  "email": "test_ef6a74ea@example.com",
+  "password": "password123"
+}
+2025-12-29 18:24:21,944 - AuthClient - INFO - 
+RESPONSE: 200
+2025-12-29 18:24:21 [    INFO] 
+RESPONSE: 200
+2025-12-29 18:24:21,944 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '245', 'content-type': 'application/json', 'x-request-id': '4ba6b7d2-3ba6-44ad-a461-08a0a22e1b97'}
+2025-12-29 18:24:21 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '245', 'content-type': 'application/json', 'x-request-id': '4ba6b7d2-3ba6-44ad-a461-08a0a22e1b97'}
+2025-12-29 18:24:21,944 - AuthClient - INFO - Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwMmQzMWZmYi1lY2NiLTQ5N2EtODA1Zi1hNDI2ZWJjZTYzNmQiLCJyb2xlIjoiY3VzdG9tZXIiLCJleHAiOjE3NjcwMjU0NjF9.dW7iFMoWaa7zewxGbVFmcB1NgaRf__hLW64CntjfW-A",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-29 18:24:21 [    INFO] Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwMmQzMWZmYi1lY2NiLTQ5N2EtODA1Zi1hNDI2ZWJjZTYzNmQiLCJyb2xlIjoiY3VzdG9tZXIiLCJleHAiOjE3NjcwMjU0NjF9.dW7iFMoWaa7zewxGbVFmcB1NgaRf__hLW64CntjfW-A",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-29 18:24:21,944 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:21 [    INFO] ================================================================================
+
+2025-12-29 18:24:21,944 - AuthClient - INFO - 
+================================================================================
+2025-12-29 18:24:21 [    INFO] 
+================================================================================
+2025-12-29 18:24:21,944 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:21 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:21,944 - AuthClient - INFO - Body: {
+  "email": "test_92abf325@example.com",
+  "password": "admin123",
+  "role": "admin"
+}
+2025-12-29 18:24:21 [    INFO] Body: {
+  "email": "test_92abf325@example.com",
+  "password": "admin123",
+  "role": "admin"
+}
+2025-12-29 18:24:22,161 - AuthClient - INFO - 
+RESPONSE: 201
+2025-12-29 18:24:22 [    INFO] 
+RESPONSE: 201
+2025-12-29 18:24:22,161 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:21 GMT', 'server': 'uvicorn', 'content-length': '96', 'content-type': 'application/json', 'x-request-id': '7a6ff713-ea2e-4c02-aa63-220232798562'}
+2025-12-29 18:24:22 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:21 GMT', 'server': 'uvicorn', 'content-length': '96', 'content-type': 'application/json', 'x-request-id': '7a6ff713-ea2e-4c02-aa63-220232798562'}
+2025-12-29 18:24:22,161 - AuthClient - INFO - Body: {
+  "id": "751029df-eb9c-49f2-8dff-129226304784",
+  "email": "test_92abf325@example.com",
+  "role": "admin"
+}
+2025-12-29 18:24:22 [    INFO] Body: {
+  "id": "751029df-eb9c-49f2-8dff-129226304784",
+  "email": "test_92abf325@example.com",
+  "role": "admin"
+}
+2025-12-29 18:24:22,161 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:22 [    INFO] ================================================================================
+
+2025-12-29 18:24:22,161 - AuthClient - INFO - 
+================================================================================
+2025-12-29 18:24:22 [    INFO] 
+================================================================================
+2025-12-29 18:24:22,161 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:22 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:22,161 - AuthClient - INFO - Body: {
+  "email": "test_92abf325@example.com",
+  "password": "admin123"
+}
+2025-12-29 18:24:22 [    INFO] Body: {
+  "email": "test_92abf325@example.com",
+  "password": "admin123"
+}
+2025-12-29 18:24:22,378 - AuthClient - INFO - 
+RESPONSE: 200
+2025-12-29 18:24:22 [    INFO] 
+RESPONSE: 200
+2025-12-29 18:24:22,378 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:21 GMT', 'server': 'uvicorn', 'content-length': '241', 'content-type': 'application/json', 'x-request-id': '2e222a98-dc4d-4936-ad7e-ffefc852b17c'}
+2025-12-29 18:24:22 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:21 GMT', 'server': 'uvicorn', 'content-length': '241', 'content-type': 'application/json', 'x-request-id': '2e222a98-dc4d-4936-ad7e-ffefc852b17c'}
+2025-12-29 18:24:22,378 - AuthClient - INFO - Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3NTEwMjlkZi1lYjljLTQ5ZjItOGRmZi0xMjkyMjYzMDQ3ODQiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3NjcwMjU0NjJ9.94u_yZbFkZgSreMc9qlS62huMFMZkpqgVPocD404M0Q",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-29 18:24:22 [    INFO] Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3NTEwMjlkZi1lYjljLTQ5ZjItOGRmZi0xMjkyMjYzMDQ3ODQiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3NjcwMjU0NjJ9.94u_yZbFkZgSreMc9qlS62huMFMZkpqgVPocD404M0Q",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-29 18:24:22,378 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:22 [    INFO] ================================================================================
+
+2025-12-29 18:24:22,378 - ProductClient - INFO - 
+================================================================================
+-------------------------------- live log call ---------------------------------
+2025-12-29 18:24:22 [    INFO] 
+================================================================================
+2025-12-29 18:24:22,378 - ProductClient - INFO - REQUEST: POST http://127.0.0.1:8000/products
+2025-12-29 18:24:22 [    INFO] REQUEST: POST http://127.0.0.1:8000/products
+2025-12-29 18:24:22,378 - ProductClient - INFO - Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:22 [    INFO] Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:22,378 - ProductClient - INFO - Body: {
+  "name": "X",
+  "price": 10.0,
+  "currency": "TRY",
+  "stock": 1,
+  "isActive": true
+}
+2025-12-29 18:24:22 [    INFO] Body: {
+  "name": "X",
+  "price": 10.0,
+  "currency": "TRY",
+  "stock": 1,
+  "isActive": true
+}
+2025-12-29 18:24:22,380 - ProductClient - INFO - 
+RESPONSE: 403
+2025-12-29 18:24:22 [    INFO] 
+RESPONSE: 403
+2025-12-29 18:24:22,380 - ProductClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:21 GMT', 'server': 'uvicorn', 'content-length': '130', 'content-type': 'application/json', 'x-request-id': '851641ea-5f9e-4b97-9c36-06d78060cb70'}
+2025-12-29 18:24:22 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:21 GMT', 'server': 'uvicorn', 'content-length': '130', 'content-type': 'application/json', 'x-request-id': '851641ea-5f9e-4b97-9c36-06d78060cb70'}
+2025-12-29 18:24:22,380 - ProductClient - INFO - Body: {
+  "error": {
+    "code": "FORBIDDEN",
+    "message": "Admin access required",
+    "details": null
+  },
+  "requestId": "851641ea-5f9e-4b97-9c36-06d78060cb70"
+}
+2025-12-29 18:24:22 [    INFO] Body: {
+  "error": {
+    "code": "FORBIDDEN",
+    "message": "Admin access required",
+    "details": null
+  },
+  "requestId": "851641ea-5f9e-4b97-9c36-06d78060cb70"
+}
+2025-12-29 18:24:22,380 - ProductClient - INFO - ================================================================================
+
+2025-12-29 18:24:22 [    INFO] ================================================================================
+
+2025-12-29 18:24:22,380 - ProductClient - INFO - 
+================================================================================
+2025-12-29 18:24:22 [    INFO] 
+================================================================================
+2025-12-29 18:24:22,380 - ProductClient - INFO - REQUEST: POST http://127.0.0.1:8000/products
+2025-12-29 18:24:22 [    INFO] REQUEST: POST http://127.0.0.1:8000/products
+2025-12-29 18:24:22,380 - ProductClient - INFO - Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:22 [    INFO] Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:22,380 - ProductClient - INFO - Body: {
+  "name": "CheapItem",
+  "price": 10.0,
+  "currency": "TRY",
+  "stock": 10,
+  "isActive": true
+}
+2025-12-29 18:24:22 [    INFO] Body: {
+  "name": "CheapItem",
+  "price": 10.0,
+  "currency": "TRY",
+  "stock": 10,
+  "isActive": true
+}
+2025-12-29 18:24:22,381 - ProductClient - INFO - 
+RESPONSE: 201
+2025-12-29 18:24:22 [    INFO] 
+RESPONSE: 201
+2025-12-29 18:24:22,381 - ProductClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:21 GMT', 'server': 'uvicorn', 'content-length': '121', 'content-type': 'application/json', 'x-request-id': '2f6d885d-1f9a-4b5d-ada9-d09b81bcacb6'}
+2025-12-29 18:24:22 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:21 GMT', 'server': 'uvicorn', 'content-length': '121', 'content-type': 'application/json', 'x-request-id': '2f6d885d-1f9a-4b5d-ada9-d09b81bcacb6'}
+2025-12-29 18:24:22,381 - ProductClient - INFO - Body: {
+  "id": "5b52e7b4-2c73-477b-bb6a-4c6b0245039e",
+  "name": "CheapItem",
+  "price": 10.0,
+  "currency": "TRY",
+  "stock": 10,
+  "isActive": true
+}
+2025-12-29 18:24:22 [    INFO] Body: {
+  "id": "5b52e7b4-2c73-477b-bb6a-4c6b0245039e",
+  "name": "CheapItem",
+  "price": 10.0,
+  "currency": "TRY",
+  "stock": 10,
+  "isActive": true
+}
+2025-12-29 18:24:22,381 - ProductClient - INFO - ================================================================================
+
+2025-12-29 18:24:22 [    INFO] ================================================================================
+
+PASSED
+tests/test_smoke.py::test_smk_01_end_to_end_happy_flow 2025-12-29 18:24:22,382 - AuthClient - INFO - 
+================================================================================
+
+================================================================================
+SMK-01: E2E Smoke Test - Complete Purchase Flow
+================================================================================
+
+[STEP 1] Registering new customer...
+
+-------------------------------- live log call ---------------------------------
+2025-12-29 18:24:22 [    INFO] 
+================================================================================
+2025-12-29 18:24:22,382 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:22 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/register
+2025-12-29 18:24:22,382 - AuthClient - INFO - Body: {
+  "email": "test_1dae8153@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:22 [    INFO] Body: {
+  "email": "test_1dae8153@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+2025-12-29 18:24:22,598 - AuthClient - INFO - 
+RESPONSE: 201
+2025-12-29 18:24:22 [    INFO] 
+RESPONSE: 201
+2025-12-29 18:24:22,598 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:21 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': '5d9b73ba-50e7-4ff4-8abf-e47a9ce67294'}
+2025-12-29 18:24:22 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:21 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': '5d9b73ba-50e7-4ff4-8abf-e47a9ce67294'}
+2025-12-29 18:24:22,598 - AuthClient - INFO - Body: {
+  "id": "22a77e32-cb7d-4f99-929e-6683f76c3889",
+  "email": "test_1dae8153@example.com",
+  "role": "customer"
+}
+2025-12-29 18:24:22 [    INFO] Body: {
+  "id": "22a77e32-cb7d-4f99-929e-6683f76c3889",
+  "email": "test_1dae8153@example.com",
+  "role": "customer"
+}
+2025-12-29 18:24:22,598 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:22 [    INFO] ================================================================================
+
+2025-12-29 18:24:22,598 - AuthClient - INFO - 
+================================================================================
+✓ User registered: test_1dae8153@example.com
+
+[STEP 2] Logging in...
+2025-12-29 18:24:22 [    INFO] 
+================================================================================
+2025-12-29 18:24:22,598 - AuthClient - INFO - REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:22 [    INFO] REQUEST: POST http://127.0.0.1:8000/auth/login
+2025-12-29 18:24:22,598 - AuthClient - INFO - Body: {
+  "email": "test_1dae8153@example.com",
+  "password": "password123"
+}
+2025-12-29 18:24:22 [    INFO] Body: {
+  "email": "test_1dae8153@example.com",
+  "password": "password123"
+}
+2025-12-29 18:24:22,822 - AuthClient - INFO - 
+RESPONSE: 200
+2025-12-29 18:24:22 [    INFO] 
+RESPONSE: 200
+2025-12-29 18:24:22,822 - AuthClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:21 GMT', 'server': 'uvicorn', 'content-length': '245', 'content-type': 'application/json', 'x-request-id': 'dca16a64-1a38-416f-bfa6-94a0d2355d81'}
+2025-12-29 18:24:22 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:21 GMT', 'server': 'uvicorn', 'content-length': '245', 'content-type': 'application/json', 'x-request-id': 'dca16a64-1a38-416f-bfa6-94a0d2355d81'}
+2025-12-29 18:24:22,823 - AuthClient - INFO - Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyMmE3N2UzMi1jYjdkLTRmOTktOTI5ZS02NjgzZjc2YzM4ODkiLCJyb2xlIjoiY3VzdG9tZXIiLCJleHAiOjE3NjcwMjU0NjJ9.z6cBJfxWXE5-ucyaRsAPRN9jpEAFNH8f2vMp-9D1KQk",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-29 18:24:22 [    INFO] Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyMmE3N2UzMi1jYjdkLTRmOTktOTI5ZS02NjgzZjc2YzM4ODkiLCJyb2xlIjoiY3VzdG9tZXIiLCJleHAiOjE3NjcwMjU0NjJ9.z6cBJfxWXE5-ucyaRsAPRN9jpEAFNH8f2vMp-9D1KQk",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+2025-12-29 18:24:22,823 - AuthClient - INFO - ================================================================================
+
+2025-12-29 18:24:22 [    INFO] ================================================================================
+
+2025-12-29 18:24:22,823 - ProductClient - INFO - 
+================================================================================
+✓ Login successful, token received
+
+[STEP 3] Listing products...
+2025-12-29 18:24:22 [    INFO] 
+================================================================================
+2025-12-29 18:24:22,823 - ProductClient - INFO - REQUEST: GET http://127.0.0.1:8000/products
+2025-12-29 18:24:22 [    INFO] REQUEST: GET http://127.0.0.1:8000/products
+2025-12-29 18:24:22,824 - ProductClient - INFO - 
+RESPONSE: 200
+2025-12-29 18:24:22 [    INFO] 
+RESPONSE: 200
+2025-12-29 18:24:22,824 - ProductClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:21 GMT', 'server': 'uvicorn', 'content-length': '1590', 'content-type': 'application/json', 'x-request-id': '20eb1607-4ca1-4b02-9967-46f34296a2db'}
+2025-12-29 18:24:22 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:21 GMT', 'server': 'uvicorn', 'content-length': '1590', 'content-type': 'application/json', 'x-request-id': '20eb1607-4ca1-4b02-9967-46f34296a2db'}
+2025-12-29 18:24:22,824 - ProductClient - INFO - Body: [
+  {
+    "id": "53b57ad8-08fd-4038-a041-be3913eb614d",
+    "name": "Laptop",
+    "price": 15000.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8171d131-f967-424d-8b1b-1c26a21d197c",
+    "name": "Mouse",
+    "price": 150.0,
+    "currency": "TRY",
+    "stock": 44,
+    "isActive": true
+  },
+  {
+    "id": "11ea8333-2cd3-41f4-9c32-d0e5889f2259",
+    "name": "Keyboard",
+    "price": 500.0,
+    "currency": "TRY",
+    "stock": 30,
+    "isActive": true
+  },
+  {
+    "id": "10337be6-7142-4785-9a71-2f90189cf8b1",
+    "name": "Monitor",
+    "price": 3000.0,
+    "currency": "TRY",
+    "stock": 20,
+    "isActive": true
+  },
+  {
+    "id": "1cc45a67-8f8e-463c-8ae2-3c44a687a835",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "3cb49d6e-37ec-4889-b6f8-afef4502dcd9",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "6d8acf5c-8feb-4a4d-a990-870dd17ea5ca",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8e344fe2-2d8c-4092-8042-30187a36141d",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "2f8ad827-e093-497e-a860-c50a1244116b",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "778bb1ad-e4f8-40fe-b61d-9e0a39a88fa5",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "eca05640-01fb-4dbf-b027-467c0220c3cf",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "eca77252-a4be-4fb7-ae50-dd345bdce6a5",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "5b52e7b4-2c73-477b-bb6a-4c6b0245039e",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  }
+]
+2025-12-29 18:24:22 [    INFO] Body: [
+  {
+    "id": "53b57ad8-08fd-4038-a041-be3913eb614d",
+    "name": "Laptop",
+    "price": 15000.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8171d131-f967-424d-8b1b-1c26a21d197c",
+    "name": "Mouse",
+    "price": 150.0,
+    "currency": "TRY",
+    "stock": 44,
+    "isActive": true
+  },
+  {
+    "id": "11ea8333-2cd3-41f4-9c32-d0e5889f2259",
+    "name": "Keyboard",
+    "price": 500.0,
+    "currency": "TRY",
+    "stock": 30,
+    "isActive": true
+  },
+  {
+    "id": "10337be6-7142-4785-9a71-2f90189cf8b1",
+    "name": "Monitor",
+    "price": 3000.0,
+    "currency": "TRY",
+    "stock": 20,
+    "isActive": true
+  },
+  {
+    "id": "1cc45a67-8f8e-463c-8ae2-3c44a687a835",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "3cb49d6e-37ec-4889-b6f8-afef4502dcd9",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "6d8acf5c-8feb-4a4d-a990-870dd17ea5ca",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8e344fe2-2d8c-4092-8042-30187a36141d",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "2f8ad827-e093-497e-a860-c50a1244116b",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "778bb1ad-e4f8-40fe-b61d-9e0a39a88fa5",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "eca05640-01fb-4dbf-b027-467c0220c3cf",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "eca77252-a4be-4fb7-ae50-dd345bdce6a5",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "5b52e7b4-2c73-477b-bb6a-4c6b0245039e",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  }
+]
+2025-12-29 18:24:22,824 - ProductClient - INFO - ================================================================================
+
+2025-12-29 18:24:22 [    INFO] ================================================================================
+
+2025-12-29 18:24:22,824 - OrderClient - INFO - 
+================================================================================
+✓ Found 13 products
+  Selected product: Mouse - 150.0 TRY
+
+[STEP 4] Creating order...
+2025-12-29 18:24:22 [    INFO] 
+================================================================================
+2025-12-29 18:24:22,824 - OrderClient - INFO - REQUEST: POST http://127.0.0.1:8000/orders
+2025-12-29 18:24:22 [    INFO] REQUEST: POST http://127.0.0.1:8000/orders
+2025-12-29 18:24:22,824 - OrderClient - INFO - Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:22 [    INFO] Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:22,824 - OrderClient - INFO - Body: {
+  "items": [
+    {
+      "productId": "8171d131-f967-424d-8b1b-1c26a21d197c",
+      "qty": 1
+    }
+  ]
+}
+2025-12-29 18:24:22 [    INFO] Body: {
+  "items": [
+    {
+      "productId": "8171d131-f967-424d-8b1b-1c26a21d197c",
+      "qty": 1
+    }
+  ]
+}
+2025-12-29 18:24:22,826 - OrderClient - INFO - 
+RESPONSE: 201
+2025-12-29 18:24:22 [    INFO] 
+RESPONSE: 201
+2025-12-29 18:24:22,826 - OrderClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:21 GMT', 'server': 'uvicorn', 'content-length': '261', 'content-type': 'application/json', 'x-request-id': '3e457a69-cbe6-4e1b-8845-cca60ac73f60'}
+2025-12-29 18:24:22 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:21 GMT', 'server': 'uvicorn', 'content-length': '261', 'content-type': 'application/json', 'x-request-id': '3e457a69-cbe6-4e1b-8845-cca60ac73f60'}
+2025-12-29 18:24:22,826 - OrderClient - INFO - Body: {
+  "id": "d6f2db3b-fdfe-404f-bf28-14223cab26f1",
+  "userId": "22a77e32-cb7d-4f99-929e-6683f76c3889",
+  "items": [
+    {
+      "productId": "8171d131-f967-424d-8b1b-1c26a21d197c",
+      "qty": 1
+    }
+  ],
+  "totalAmount": 150.0,
+  "currency": "TRY",
+  "status": "CREATED",
+  "createdAt": "2025-12-29T15:24:22.825694"
+}
+2025-12-29 18:24:22 [    INFO] Body: {
+  "id": "d6f2db3b-fdfe-404f-bf28-14223cab26f1",
+  "userId": "22a77e32-cb7d-4f99-929e-6683f76c3889",
+  "items": [
+    {
+      "productId": "8171d131-f967-424d-8b1b-1c26a21d197c",
+      "qty": 1
+    }
+  ],
+  "totalAmount": 150.0,
+  "currency": "TRY",
+  "status": "CREATED",
+  "createdAt": "2025-12-29T15:24:22.825694"
+}
+2025-12-29 18:24:22,826 - OrderClient - INFO - ================================================================================
+
+2025-12-29 18:24:22 [    INFO] ================================================================================
+
+2025-12-29 18:24:22,826 - PaymentClient - INFO - 
+================================================================================
+✓ Order created: d6f2db3b-fdfe-404f-bf28-14223cab26f1
+  Total: 150.0 TRY
+  Status: CREATED
+
+[STEP 5] Creating payment...
+2025-12-29 18:24:22 [    INFO] 
+================================================================================
+2025-12-29 18:24:22,826 - PaymentClient - INFO - REQUEST: POST http://127.0.0.1:8000/payments
+2025-12-29 18:24:22 [    INFO] REQUEST: POST http://127.0.0.1:8000/payments
+2025-12-29 18:24:22,826 - PaymentClient - INFO - Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:22 [    INFO] Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:22,826 - PaymentClient - INFO - Body: {
+  "orderId": "d6f2db3b-fdfe-404f-bf28-14223cab26f1",
+  "method": "CARD"
+}
+2025-12-29 18:24:22 [    INFO] Body: {
+  "orderId": "d6f2db3b-fdfe-404f-bf28-14223cab26f1",
+  "method": "CARD"
+}
+2025-12-29 18:24:22,827 - PaymentClient - INFO - 
+RESPONSE: 201
+2025-12-29 18:24:22 [    INFO] 
+RESPONSE: 201
+2025-12-29 18:24:22,828 - PaymentClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:21 GMT', 'server': 'uvicorn', 'content-length': '261', 'content-type': 'application/json', 'x-request-id': '87a15553-84f2-4838-abef-14b9e45c744f'}
+2025-12-29 18:24:22 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:21 GMT', 'server': 'uvicorn', 'content-length': '261', 'content-type': 'application/json', 'x-request-id': '87a15553-84f2-4838-abef-14b9e45c744f'}
+2025-12-29 18:24:22,828 - PaymentClient - INFO - Body: {
+  "id": "bea37505-44a5-4f62-9079-226347b6ac43",
+  "orderId": "d6f2db3b-fdfe-404f-bf28-14223cab26f1",
+  "amount": 150.0,
+  "currency": "TRY",
+  "method": "CARD",
+  "status": "CAPTURED",
+  "providerRef": "PROV-ffe8206d-891c-43fa-8abf-1434d336383f",
+  "createdAt": "2025-12-29T15:24:22.827428"
+}
+2025-12-29 18:24:22 [    INFO] Body: {
+  "id": "bea37505-44a5-4f62-9079-226347b6ac43",
+  "orderId": "d6f2db3b-fdfe-404f-bf28-14223cab26f1",
+  "amount": 150.0,
+  "currency": "TRY",
+  "method": "CARD",
+  "status": "CAPTURED",
+  "providerRef": "PROV-ffe8206d-891c-43fa-8abf-1434d336383f",
+  "createdAt": "2025-12-29T15:24:22.827428"
+}
+2025-12-29 18:24:22,828 - PaymentClient - INFO - ================================================================================
+
+2025-12-29 18:24:22 [    INFO] ================================================================================
+
+2025-12-29 18:24:22,828 - OrderClient - INFO - 
+================================================================================
+✓ Payment created: bea37505-44a5-4f62-9079-226347b6ac43
+  Amount: 150.0 TRY
+  Method: CARD
+  Status: CAPTURED
+
+[STEP 6] Verifying order status...
+2025-12-29 18:24:22 [    INFO] 
+================================================================================
+2025-12-29 18:24:22,828 - OrderClient - INFO - REQUEST: GET http://127.0.0.1:8000/orders/d6f2db3b-fdfe-404f-bf28-14223cab26f1
+2025-12-29 18:24:22 [    INFO] REQUEST: GET http://127.0.0.1:8000/orders/d6f2db3b-fdfe-404f-bf28-14223cab26f1
+2025-12-29 18:24:22,828 - OrderClient - INFO - Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:22 [    INFO] Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+2025-12-29 18:24:22,829 - OrderClient - INFO - 
+RESPONSE: 200
+2025-12-29 18:24:22 [    INFO] 
+RESPONSE: 200
+2025-12-29 18:24:22,829 - OrderClient - INFO - Headers: {'date': 'Mon, 29 Dec 2025 15:24:21 GMT', 'server': 'uvicorn', 'content-length': '258', 'content-type': 'application/json', 'x-request-id': 'aa8f0f1a-5dce-4872-a54c-f1169574f826'}
+2025-12-29 18:24:22 [    INFO] Headers: {'date': 'Mon, 29 Dec 2025 15:24:21 GMT', 'server': 'uvicorn', 'content-length': '258', 'content-type': 'application/json', 'x-request-id': 'aa8f0f1a-5dce-4872-a54c-f1169574f826'}
+2025-12-29 18:24:22,829 - OrderClient - INFO - Body: {
+  "id": "d6f2db3b-fdfe-404f-bf28-14223cab26f1",
+  "userId": "22a77e32-cb7d-4f99-929e-6683f76c3889",
+  "items": [
+    {
+      "productId": "8171d131-f967-424d-8b1b-1c26a21d197c",
+      "qty": 1
+    }
+  ],
+  "totalAmount": 150.0,
+  "currency": "TRY",
+  "status": "PAID",
+  "createdAt": "2025-12-29T15:24:22.825694"
+}
+2025-12-29 18:24:22 [    INFO] Body: {
+  "id": "d6f2db3b-fdfe-404f-bf28-14223cab26f1",
+  "userId": "22a77e32-cb7d-4f99-929e-6683f76c3889",
+  "items": [
+    {
+      "productId": "8171d131-f967-424d-8b1b-1c26a21d197c",
+      "qty": 1
+    }
+  ],
+  "totalAmount": 150.0,
+  "currency": "TRY",
+  "status": "PAID",
+  "createdAt": "2025-12-29T15:24:22.825694"
+}
+2025-12-29 18:24:22,829 - OrderClient - INFO - ================================================================================
+
+2025-12-29 18:24:22 [    INFO] ================================================================================
+
+✓ Order status verified: PAID
+
+================================================================================
+SMK-01: PASSED ✓
+================================================================================
+User: test_1dae8153@example.com
+Order: d6f2db3b-fdfe-404f-bf28-14223cab26f1 - 150.0 TRY
+Payment: bea37505-44a5-4f62-9079-226347b6ac43 - CAPTURED
+Final Order Status: PAID
+================================================================================
+
+PASSED
+
+=================================== FAILURES ===================================
+______________________ test_pay_02_create_payment_success ______________________
+tests/test_payments.py:12: in test_pay_02_create_payment_success
+    assert_status_code(order_r, 201)
+tests/assertions/response_assertions.py:9: in assert_status_code
+    assert response.status_code == expected, f"{msg}\nResponse: {response.text}"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: Expected status 201, got 422
+E   Response: {"error":{"code":"VALIDATION_ERROR","message":"Cart total cannot exceed 5000.0 TRY. Current: 15000.0","details":null},"requestId":"bf251e4a-ad39-49b6-a517-af6aaa8793a9"}
+------------------------------ Captured log setup ------------------------------
+INFO     AuthClient:api_client.py:27 
+================================================================================
+INFO     AuthClient:api_client.py:28 REQUEST: POST http://127.0.0.1:8000/auth/register
+INFO     AuthClient:api_client.py:35 Body: {
+  "email": "test_d649b7fd@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+INFO     AuthClient:api_client.py:39 
+RESPONSE: 201
+INFO     AuthClient:api_client.py:40 Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': '78ca6957-df67-4d95-9475-f3795bdd68a5'}
+INFO     AuthClient:api_client.py:43 Body: {
+  "id": "bde26572-97ef-49c9-b866-c10eaa9ffa0f",
+  "email": "test_d649b7fd@example.com",
+  "role": "customer"
+}
+INFO     AuthClient:api_client.py:46 ================================================================================
+
+INFO     AuthClient:api_client.py:27 
+================================================================================
+INFO     AuthClient:api_client.py:28 REQUEST: POST http://127.0.0.1:8000/auth/login
+INFO     AuthClient:api_client.py:35 Body: {
+  "email": "test_d649b7fd@example.com",
+  "password": "password123"
+}
+INFO     AuthClient:api_client.py:39 
+RESPONSE: 200
+INFO     AuthClient:api_client.py:40 Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '245', 'content-type': 'application/json', 'x-request-id': 'c582a8ea-7727-49d5-9a35-4bedb49acd8d'}
+INFO     AuthClient:api_client.py:43 Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiZGUyNjU3Mi05N2VmLTQ5YzktYjg2Ni1jMTBlYWE5ZmZhMGYiLCJyb2xlIjoiY3VzdG9tZXIiLCJleHAiOjE3NjcwMjU0NjF9.RuzfnSS2ARL6LbSnYd9BJDRjkfSvs5uuoxzNIgc1Q3k",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+INFO     AuthClient:api_client.py:46 ================================================================================
+------------------------------ Captured log call -------------------------------
+INFO     ProductClient:api_client.py:27 
+================================================================================
+INFO     ProductClient:api_client.py:28 REQUEST: GET http://127.0.0.1:8000/products
+INFO     ProductClient:api_client.py:39 
+RESPONSE: 200
+INFO     ProductClient:api_client.py:40 Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '1468', 'content-type': 'application/json', 'x-request-id': '52bc86e0-734c-4e94-982a-29fe26cac88c'}
+INFO     ProductClient:api_client.py:43 Body: [
+  {
+    "id": "53b57ad8-08fd-4038-a041-be3913eb614d",
+    "name": "Laptop",
+    "price": 15000.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8171d131-f967-424d-8b1b-1c26a21d197c",
+    "name": "Mouse",
+    "price": 150.0,
+    "currency": "TRY",
+    "stock": 44,
+    "isActive": true
+  },
+  {
+    "id": "11ea8333-2cd3-41f4-9c32-d0e5889f2259",
+    "name": "Keyboard",
+    "price": 500.0,
+    "currency": "TRY",
+    "stock": 30,
+    "isActive": true
+  },
+  {
+    "id": "10337be6-7142-4785-9a71-2f90189cf8b1",
+    "name": "Monitor",
+    "price": 3000.0,
+    "currency": "TRY",
+    "stock": 20,
+    "isActive": true
+  },
+  {
+    "id": "1cc45a67-8f8e-463c-8ae2-3c44a687a835",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "3cb49d6e-37ec-4889-b6f8-afef4502dcd9",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "6d8acf5c-8feb-4a4d-a990-870dd17ea5ca",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8e344fe2-2d8c-4092-8042-30187a36141d",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "2f8ad827-e093-497e-a860-c50a1244116b",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "778bb1ad-e4f8-40fe-b61d-9e0a39a88fa5",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "eca05640-01fb-4dbf-b027-467c0220c3cf",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "eca77252-a4be-4fb7-ae50-dd345bdce6a5",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  }
+]
+INFO     ProductClient:api_client.py:46 ================================================================================
+
+INFO     OrderClient:api_client.py:27 
+================================================================================
+INFO     OrderClient:api_client.py:28 REQUEST: POST http://127.0.0.1:8000/orders
+INFO     OrderClient:api_client.py:33 Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+INFO     OrderClient:api_client.py:35 Body: {
+  "items": [
+    {
+      "productId": "53b57ad8-08fd-4038-a041-be3913eb614d",
+      "qty": 1
+    }
+  ]
+}
+INFO     OrderClient:api_client.py:39 
+RESPONSE: 422
+INFO     OrderClient:api_client.py:40 Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '169', 'content-type': 'application/json', 'x-request-id': 'bf251e4a-ad39-49b6-a517-af6aaa8793a9'}
+INFO     OrderClient:api_client.py:43 Body: {
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Cart total cannot exceed 5000.0 TRY. Current: 15000.0",
+    "details": null
+  },
+  "requestId": "bf251e4a-ad39-49b6-a517-af6aaa8793a9"
+}
+INFO     OrderClient:api_client.py:46 ================================================================================
+_____________ test_pay_07_payment_for_other_users_order_forbidden ______________
+tests/test_payments.py:33: in test_pay_07_payment_for_other_users_order_forbidden
+    assert_status_code(order_r, 201)
+tests/assertions/response_assertions.py:9: in assert_status_code
+    assert response.status_code == expected, f"{msg}\nResponse: {response.text}"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AssertionError: Expected status 201, got 422
+E   Response: {"error":{"code":"VALIDATION_ERROR","message":"Cart total cannot exceed 5000.0 TRY. Current: 15000.0","details":null},"requestId":"fb537437-ade8-4589-9d99-c86871bd81bf"}
+------------------------------ Captured log setup ------------------------------
+INFO     AuthClient:api_client.py:27 
+================================================================================
+INFO     AuthClient:api_client.py:28 REQUEST: POST http://127.0.0.1:8000/auth/register
+INFO     AuthClient:api_client.py:35 Body: {
+  "email": "test_77d29d11@example.com",
+  "password": "password123",
+  "role": "customer"
+}
+INFO     AuthClient:api_client.py:39 
+RESPONSE: 201
+INFO     AuthClient:api_client.py:40 Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '99', 'content-type': 'application/json', 'x-request-id': '61241d80-ad0f-4b1f-8b95-007af20cb5f3'}
+INFO     AuthClient:api_client.py:43 Body: {
+  "id": "481a672f-b826-4121-ad6d-21a68b89551a",
+  "email": "test_77d29d11@example.com",
+  "role": "customer"
+}
+INFO     AuthClient:api_client.py:46 ================================================================================
+
+INFO     AuthClient:api_client.py:27 
+================================================================================
+INFO     AuthClient:api_client.py:28 REQUEST: POST http://127.0.0.1:8000/auth/login
+INFO     AuthClient:api_client.py:35 Body: {
+  "email": "test_77d29d11@example.com",
+  "password": "password123"
+}
+INFO     AuthClient:api_client.py:39 
+RESPONSE: 200
+INFO     AuthClient:api_client.py:40 Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '245', 'content-type': 'application/json', 'x-request-id': '51e13619-4911-4204-b54b-37d6b37ac671'}
+INFO     AuthClient:api_client.py:43 Body: {
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0ODFhNjcyZi1iODI2LTQxMjEtYWQ2ZC0yMWE2OGI4OTU1MWEiLCJyb2xlIjoiY3VzdG9tZXIiLCJleHAiOjE3NjcwMjU0NjF9.eoYRG2NuaMrA7WDIU5s3EaxBSEX5X7T-RgqXskRChWQ",
+  "tokenType": "Bearer",
+  "expiresIn": 3600
+}
+INFO     AuthClient:api_client.py:46 ================================================================================
+------------------------------ Captured log call -------------------------------
+INFO     ProductClient:api_client.py:27 
+================================================================================
+INFO     ProductClient:api_client.py:28 REQUEST: GET http://127.0.0.1:8000/products
+INFO     ProductClient:api_client.py:39 
+RESPONSE: 200
+INFO     ProductClient:api_client.py:40 Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '1468', 'content-type': 'application/json', 'x-request-id': '98a19888-e3d9-4556-bbe4-48af8aee60ee'}
+INFO     ProductClient:api_client.py:43 Body: [
+  {
+    "id": "53b57ad8-08fd-4038-a041-be3913eb614d",
+    "name": "Laptop",
+    "price": 15000.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8171d131-f967-424d-8b1b-1c26a21d197c",
+    "name": "Mouse",
+    "price": 150.0,
+    "currency": "TRY",
+    "stock": 44,
+    "isActive": true
+  },
+  {
+    "id": "11ea8333-2cd3-41f4-9c32-d0e5889f2259",
+    "name": "Keyboard",
+    "price": 500.0,
+    "currency": "TRY",
+    "stock": 30,
+    "isActive": true
+  },
+  {
+    "id": "10337be6-7142-4785-9a71-2f90189cf8b1",
+    "name": "Monitor",
+    "price": 3000.0,
+    "currency": "TRY",
+    "stock": 20,
+    "isActive": true
+  },
+  {
+    "id": "1cc45a67-8f8e-463c-8ae2-3c44a687a835",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "3cb49d6e-37ec-4889-b6f8-afef4502dcd9",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "6d8acf5c-8feb-4a4d-a990-870dd17ea5ca",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "8e344fe2-2d8c-4092-8042-30187a36141d",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "2f8ad827-e093-497e-a860-c50a1244116b",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "778bb1ad-e4f8-40fe-b61d-9e0a39a88fa5",
+    "name": "CheapItem",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  },
+  {
+    "id": "eca05640-01fb-4dbf-b027-467c0220c3cf",
+    "name": "LimitedStock",
+    "price": 100.0,
+    "currency": "TRY",
+    "stock": 1,
+    "isActive": true
+  },
+  {
+    "id": "eca77252-a4be-4fb7-ae50-dd345bdce6a5",
+    "name": "TooCheap",
+    "price": 10.0,
+    "currency": "TRY",
+    "stock": 10,
+    "isActive": true
+  }
+]
+INFO     ProductClient:api_client.py:46 ================================================================================
+
+INFO     OrderClient:api_client.py:27 
+================================================================================
+INFO     OrderClient:api_client.py:28 REQUEST: POST http://127.0.0.1:8000/orders
+INFO     OrderClient:api_client.py:33 Headers: {
+  "Authorization": "***",
+  "Content-Type": "application/json"
+}
+INFO     OrderClient:api_client.py:35 Body: {
+  "items": [
+    {
+      "productId": "53b57ad8-08fd-4038-a041-be3913eb614d",
+      "qty": 1
+    }
+  ]
+}
+INFO     OrderClient:api_client.py:39 
+RESPONSE: 422
+INFO     OrderClient:api_client.py:40 Headers: {'date': 'Mon, 29 Dec 2025 15:24:19 GMT', 'server': 'uvicorn', 'content-length': '169', 'content-type': 'application/json', 'x-request-id': 'fb537437-ade8-4589-9d99-c86871bd81bf'}
+INFO     OrderClient:api_client.py:43 Body: {
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Cart total cannot exceed 5000.0 TRY. Current: 15000.0",
+    "details": null
+  },
+  "requestId": "fb537437-ade8-4589-9d99-c86871bd81bf"
+}
+INFO     OrderClient:api_client.py:46 ================================================================================
+=========================== short test summary info ============================
+FAILED tests/test_payments.py::test_pay_02_create_payment_success - Assertion...
+FAILED tests/test_payments.py::test_pay_07_payment_for_other_users_order_forbidden
+========================= 2 failed, 15 passed in 6.27s =========================
