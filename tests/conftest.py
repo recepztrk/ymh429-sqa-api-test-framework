@@ -73,3 +73,35 @@ def customer_token(auth_client, test_customer_user):
     
     assert response.status_code == 200
     return response.json()["accessToken"]
+
+
+@pytest.fixture(scope="function")
+def test_admin_user(auth_client):
+    """Create a test admin user and return credentials."""
+    from tests.data.test_data import generate_admin_data
+
+    user_data = generate_admin_data()
+    response = auth_client.register(
+        email=user_data["email"],
+        password=user_data["password"],
+        role=user_data["role"],
+    )
+    assert response.status_code == 201, response.text
+
+    return {
+        "email": user_data["email"],
+        "password": user_data["password"],
+        "role": user_data["role"],
+        "user_data": response.json(),
+    }
+
+
+@pytest.fixture(scope="function")
+def admin_token(auth_client, test_admin_user):
+    """Get access token for test admin."""
+    response = auth_client.login(
+        email=test_admin_user["email"],
+        password=test_admin_user["password"],
+    )
+    assert response.status_code == 200, response.text
+    return response.json()["accessToken"]

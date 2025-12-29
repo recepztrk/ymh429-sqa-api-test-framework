@@ -72,3 +72,19 @@ def validate_payment_schema(data: dict):
     assert data["method"] in ["CARD", "TRANSFER"], f"Invalid method: {data['method']}"
     assert data["status"] in ["INITIATED", "CAPTURED", "FAILED", "REFUNDED"], f"Invalid status: {data['status']}"
     assert isinstance(data["createdAt"], str), "createdAt must be string"
+
+
+def validate_error_response_schema(data: dict):
+    """Validate ErrorResponse schema."""
+    assert "error" in data, "Missing 'error' object"
+    assert "requestId" in data, "Missing 'requestId'"
+
+    err = data["error"]
+    for field in ["code", "message", "details"]:
+        assert field in err, f"Missing error.{field}"
+
+    assert isinstance(err["code"], str), "error.code must be string"
+    assert isinstance(err["message"], str), "error.message must be string"
+    # details may be None or list
+    assert (err["details"] is None) or isinstance(err["details"], list), "error.details must be null or list"
+    assert (data["requestId"] is None) or isinstance(data["requestId"], str), "requestId must be string or null"
