@@ -69,13 +69,16 @@ jobs:
 
           echo "Health OK"
 
-      - name: Run smoke tests
+      - name: Run tests (full) + generate reports
         run: |
-          pytest -m smoke -v --junitxml=junit-report.xml
+          pytest -v --junitxml=junit-report.xml --html=pytest-report.html --self-contained-html
 
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: pytest-results
-          path: junit-report.xml
+          path: |
+            junit-report.xml
+            pytest-report.html
+            uvicorn.log
